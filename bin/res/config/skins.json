@@ -1,0 +1,92 @@
+[
+    {
+        "id": "唯一标识",
+        "name": "皮肤名字",
+        "skin_res_name": "皮肤对应的资源名称",
+        "unlock_type": "解锁条件：0默认解锁，1钻石手动兑换，2签到解锁",
+        "unlock_need": "解锁要消耗的数量",
+        "skin_try_icon": "皮肤试用界面的icon",
+        "skin_try_weight": "试用皮肤随机权重"
+    },
+    {
+        "id": "0",
+        "name": "pen_0",
+        "skin_res_name": "pen_0",
+        "unlock_type": "0",
+        "unlock_need": "0",
+        "skin_try_icon": "pen_0",
+        "skin_try_weight": "0"
+    },
+    {
+        "id": "1",
+        "name": "pen_1",
+        "skin_res_name": "pen_1",
+        "unlock_type": "1",
+        "unlock_need": "100",
+        "skin_try_icon": "pen_1",
+        "skin_try_weight": "10"
+    },
+    {
+        "id": "2",
+        "name": "pen_2",
+        "skin_res_name": "pen_2",
+        "unlock_type": "1",
+        "unlock_need": "300",
+        "skin_try_icon": "pen_2",
+        "skin_try_weight": "10"
+    },
+    {
+        "id": "3",
+        "name": "pen_3",
+        "skin_res_name": "pen_3",
+        "unlock_type": "2",
+        "unlock_need": "0",
+        "skin_try_icon": "pen_3",
+        "skin_try_weight": "30"
+    },
+    {
+        "id": "4",
+        "name": "pen_4",
+        "skin_res_name": "pen_4",
+        "unlock_type": "1",
+        "unlock_need": "600",
+        "skin_try_icon": "pen_4",
+        "skin_try_weight": "10"
+    },
+    {
+        "id": "5",
+        "name": "pen_5",
+        "skin_res_name": "pen_5",
+        "unlock_type": "2",
+        "unlock_need": "0",
+        "skin_try_icon": "pen_5",
+        "skin_try_weight": "30"
+    },
+    {
+        "id": "6",
+        "name": "pen_6",
+        "skin_res_name": "pen_6",
+        "unlock_type": "1",
+        "unlock_need": "800",
+        "skin_try_icon": "pen_6",
+        "skin_try_weight": "10"
+    },
+    {
+        "id": "7",
+        "name": "pen_7",
+        "skin_res_name": "pen_7",
+        "unlock_type": "1",
+        "unlock_need": "1200",
+        "skin_try_icon": "pen_7",
+        "skin_try_weight": "10"
+    },
+    {
+        "id": "8",
+        "name": "pen_8",
+        "skin_res_name": "pen_8",
+        "unlock_type": "1",
+        "unlock_need": "2000",
+        "skin_try_icon": "pen_8",
+        "skin_try_weight": "10"
+    }
+]

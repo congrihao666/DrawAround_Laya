@@ -1,0 +1,82 @@
+[
+    {
+        "icon_scale": "icon图片缩放比例",
+        "id": "唯一标识",
+        "name": "奖励显示名字",
+        "reward_gold": "普通领取钻石数量",
+        "reward_skinid": "奖励解锁皮肤id",
+        "destext": "普通领取文字描述",
+        "destext_double": "翻倍领取文字描述",
+        "signin_icon": "奖励的界面对应icon"
+    },
+    {
+        "icon_scale": "1.5",
+        "id": "0",
+        "name": "钻石X100",
+        "reward_gold": "100",
+        "reward_skinid": "0",
+        "destext": "恭喜获得 钻石X100",
+        "destext_double": "恭喜获得 钻石X200",
+        "signin_icon": "start-z"
+    },
+    {
+        "icon_scale": "0.3",
+        "id": "1",
+        "name": "钻石X200+限定皮肤",
+        "reward_gold": "200",
+        "reward_skinid": "3",
+        "destext": "恭喜获得 钻石X200+限定皮肤",
+        "destext_double": "恭喜获得 钻石X400+限定皮肤",
+        "signin_icon": "3"
+    },
+    {
+        "icon_scale": "1.5",
+        "id": "2",
+        "name": "钻石X500",
+        "reward_gold": "500",
+        "reward_skinid": "0",
+        "destext": "恭喜获得 钻石X500",
+        "destext_double": "恭喜获得 钻石X1000",
+        "signin_icon": "start-z"
+    },
+    {
+        "icon_scale": "1.5",
+        "id": "3",
+        "name": "钻石X600",
+        "reward_gold": "600",
+        "reward_skinid": "0",
+        "destext": "恭喜获得 钻石X600",
+        "destext_double": "恭喜获得 钻石X1200",
+        "signin_icon": "start-z"
+    },
+    {
+        "icon_scale": "1.5",
+        "id": "4",
+        "name": "钻石X800",
+        "reward_gold": "800",
+        "reward_skinid": "0",
+        "destext": "恭喜获得 钻石X800",
+        "destext_double": "恭喜获得 钻石X1600",
+        "signin_icon": "start-z"
+    },
+    {
+        "icon_scale": "1.5",
+        "id": "5",
+        "name": "钻石X1000",
+        "reward_gold": "1000",
+        "reward_skinid": "0",
+        "destext": "恭喜获得 钻石X1000",
+        "destext_double": "恭喜获得 钻石X2000",
+        "signin_icon": "start-z"
+    },
+    {
+        "icon_scale": "0.3",
+        "id": "6",
+        "name": "钻石X3000+酷炫皮肤",
+        "reward_gold": "3000",
+        "reward_skinid": "5",
+        "destext": "恭喜获得 钻石X3000",
+        "destext_double": "恭喜获得 钻石X6000+限定皮肤",
+        "signin_icon": "5"
+    }
+]

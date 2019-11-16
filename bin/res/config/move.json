@@ -1,0 +1,261 @@
+{
+    "obstacle": {
+        "lvl1": {},
+        "lvl4": {
+            "o1": {
+                "type": 1,
+                "x": 9,
+                "y": -4,
+                "angle": 180,
+                "distance": 9,
+                "time": 6000,
+                "width": 5
+            }
+        },
+        "lvl5": {
+            "o1": {
+                "type": 1,
+                "x": 7,
+                "y": 5,
+                "angle": 180,
+                "distance": 17,
+                "time": 8000,
+                "width": 5
+            }
+        },
+        "lvl7": {
+            "o1": {
+                "type": 1,
+                "x": 14.5,
+                "y": -12,
+                "angle": 90,
+                "distance": 22,
+                "time": 10000,
+                "width": 5
+            }
+        },
+        "lvl8": {
+            "o1": {
+                "type": 2,
+                "x": 15,
+                "y": -7,
+                "angle": 0,
+                "distance": 0,
+                "time": 8000,
+                "width": 7
+            }
+        },
+        "lvl10": {
+            "o1": {
+                "type": 1,
+                "x": 23,
+                "y": -17,
+                "angle": 90,
+                "distance": 22,
+                "time": 12000,
+                "width": 5
+            }
+        },
+        "lvl11": {
+            "o1": {
+                "type": 2,
+                "x": 10,
+                "y": -3.5,
+                "angle": 0,
+                "distance": 0,
+                "time": 10000,
+                "width": 9
+            },
+            "lvl6": {}
+        }
+    },
+    "colors": {
+        "lvl1": {
+            "p1": "color1"
+        },
+        "lvl2": {
+            "p1": "color2",
+            "p2": "color3",
+            "p3": "color3",
+            "p4": "color3",
+            "p5": "color3"
+        },
+        "lvl3": {
+            "p1": "color4",
+            "p2": "color5",
+            "p3": "color4",
+            "p4": "color4",
+            "p5": "color4",
+            "p6": "color4",
+            "p7": "color4"
+        },
+        "lvl4": {
+            "p1": "color6",
+            "p2": "color7",
+            "p3": "color7",
+            "p4": "color7",
+            "p5": "color7"
+        },
+        "lvl5": {
+            "p1": "color8",
+            "p2": "color9",
+            "p3": "color10",
+            "p4": "color11"
+        },
+        "lvl6": {
+            "p1": "color12",
+            "p2": "color13",
+            "p3": "color14",
+            "p4": "color15",
+            "p5": "color14"
+        },
+        "lvl7": {
+            "p1": "color5",
+            "p2": "color5",
+            "p3": "color5",
+            "p4": "color5",
+            "p5": "color5",
+            "p6": "color5",
+            "p7": "color5",
+            "p8": "color5"
+        },
+        "lvl8": {
+            "p1": "color5",
+            "p2": "color5",
+            "p3": "color5",
+            "p4": "color16",
+            "p5": "color16"
+        },
+        "lvl9": {
+            "p1": "color17",
+            "p2": "color17",
+            "p3": "color17",
+            "p4": "color18",
+            "p5": "color18",
+            "p6": "color18"
+        },
+        "lvl10": {
+            "p1": "color5",
+            "p2": "color5",
+            "p3": "color5",
+            "p4": "color5",
+            "p5": "color5",
+            "p6": "color5",
+            "p7": "color14",
+            "p8": "color14",
+            "p9": "color14",
+            "p10": "color18",
+            "p11": "color18",
+            "p12": "color18",
+            "p13": "color18",
+            "p14": "color15",
+            "p15": "color15",
+            "p16": "color15",
+            "p17": "color4"
+        },
+        "lvl11": {
+            "p1": "color15",
+            "p2": "color15",
+            "p3": "color15",
+            "p4": "color15",
+            "p5": "color15",
+            "p6": "color5",
+            "p7": "color15",
+            "p8": "color4",
+            "p9": "color4",
+            "p10": "color4"
+        }
+    },
+    "colorType": {
+        "color1": [
+            255,
+            246,
+            0
+        ],
+        "color2": [
+            138,
+            249,
+            100
+        ],
+        "color3": [
+            110,
+            219,
+            255
+        ],
+        "color4": [
+            255,
+            240,
+            18
+        ],
+        "color5": [
+            137,
+            249,
+            100
+        ],
+        "color6": [
+            109,
+            219,
+            255
+        ],
+        "color7": [
+            135,
+            244,
+            98
+        ],
+        "color8": [
+            255,
+            110,
+            221
+        ],
+        "color9": [
+            140,
+            251,
+            102
+        ],
+        "color10": [
+            107,
+            214,
+            255
+        ],
+        "color11": [
+            255,
+            249,
+            20
+        ],
+        "color12": [
+            255,
+            96,
+            105
+        ],
+        "color13": [
+            255,
+            112,
+            223
+        ],
+        "color14": [
+            189,
+            130,
+            255
+        ],
+        "color15": [
+            110,
+            221,
+            255
+        ],
+        "color16": [
+            189,
+            130,
+            255
+        ],
+        "color17": [
+            137,
+            249,
+            100
+        ],
+        "color18": [
+            112,
+            223,
+            255
+        ]
+    }
+}
