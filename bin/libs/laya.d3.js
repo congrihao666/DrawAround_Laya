@@ -23154,6 +23154,7 @@
 	        return touch;
 	    }
 	    _mouseTouchDown() {
+			if (1) return;
 	        var touch = this._mouseTouch;
 	        var sprite = touch.sprite;
 	        touch._pressedSprite = sprite;
@@ -23167,6 +23168,7 @@
 	        }
 	    }
 	    _mouseTouchUp() {
+			if (1) return;
 	        var i, n;
 	        var touch = this._mouseTouch;
 	        var lastPressedSprite = touch._pressedSprite;
@@ -23191,6 +23193,7 @@
 	        }
 	    }
 	    _mouseTouchRayCast(cameras) {
+			if (1) return;
 	        var touchHitResult = Input3D._tempHitResult0;
 	        var touchPos = Input3D._tempVector20;
 	        var touchRay = Input3D._tempRay0;
@@ -23234,6 +23237,7 @@
 	        }
 	    }
 	    _changeTouches(changedTouches, flag) {
+			if (1) return;
 	        var offsetX = 0, offsetY = 0;
 	        var lastCount = this._touches.length;
 	        for (var j = 0, m = changedTouches.length; j < m; j++) {
@@ -23278,6 +23282,7 @@
 	        }
 	    }
 	    _update() {
+			if (1) return;
 	        var enablePhysics = Physics3D._enablePhysics && !PhysicsSimulation.disableSimulation;
 	        var i, n, j, m;
 	        n = this._eventList.length;

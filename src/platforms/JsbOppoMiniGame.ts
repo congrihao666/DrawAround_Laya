@@ -2,15 +2,15 @@ import { JsbBase, AdvertType, SwitchType } from "./JsbBase";
 import PubUtils from "../common/PubUtils";
 
 export default class JsbOppoMiniGame extends JsbBase {
-    public AppId: string = "30098948";
+    public AppId: string = "30219614";
 
-    public OpenScreenId: string = "89933";
+    public OpenScreenId: string = "138492";
 
-    public BannerId: string = "89931";
+    public BannerId: string = "138485";
 
-    public RewardedVideoId: string = "89934";
+    public RewardedVideoId: string = "138489";
 
-    public InsertId: string = "89932";
+    public InsertId: string = "138487";
 
 
     public isCachedVideo: boolean = false;
@@ -139,9 +139,9 @@ export default class JsbOppoMiniGame extends JsbBase {
 
             bannerAd.onHide(() => {
                 // console.log('banner 广告隐藏');
-                Laya.timer.once(1000 * 60, self, () => {
-                    this.openBannerView();
-                })
+                // Laya.timer.once(1000 * 60, self, () => {
+                //     this.openBannerView();
+                // })
             });
 
             bannerAd.onError(function (err) {
@@ -177,6 +177,14 @@ export default class JsbOppoMiniGame extends JsbBase {
             })
             this.bannerAd = null;
         }
+    }
+
+    hideBanner() {
+        this.bannerAd.hide();
+    }
+    
+    showBanner() {
+        this.bannerAd.show();
     }
 
     public loadRewardVide() {

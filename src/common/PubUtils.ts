@@ -326,4 +326,21 @@ export default class PubUtils {
         return uuid;
     }
 
+    public static GetNetJson(url: string, complete: Function, err: Function = null) {
+        let xh = new Laya.HttpRequest();
+        xh.once(Laya.Event.COMPLETE, this, complete);
+
+        if (err) {
+            xh.once(Laya.Event.ERROR, this, err);
+        }
+        xh.send(url, "", "get", "json", ["Cache-Control", "no-cache"]);
+    }
+
+    public static DataDocking(url: string, param: string) {
+        let xh = new Laya.HttpRequest();
+        xh.http.open("POST", url);
+        xh.http.setRequestHeader("Content-Type", "application/json");
+        xh.http.send(param)
+    }
+
 }

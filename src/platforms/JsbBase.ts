@@ -19,6 +19,10 @@ export class JsbBase {
 
     }
 
+    hideBanner() {}
+    
+    showBanner() {}
+
     /**
      * 使手机发生较短时间的振动。
      * 某些机型在不支持短振动时会

@@ -4,19 +4,17 @@ P D6189AF1 1234567890.png
 P 69815F5B img_black.png
 P C50F9F52 logo.png
 P ABD95905 sb-djs.png
-P E34462C1 sb-fh.png
 P E49AF675 sb-jx.png
 P D579407D sb-sb.png
 P 8D8E47F1 sl-di.png
+P 040DBA95 sl-fh.png
 P EA640D4C sl-jl1.png
 P 8D123F58 sl-jl2.png
 P 245EA79E sl-jl3.png
 P 36AB46A5 sl-lq.png
 P 18BDF72A sl-sl.png
-P 95A55C08 sl-zjlq.png
 P 2DB3420B start-jdt$bar.png
 P A79CF0C1 start-jdt.png
-P EF8888B7 start-start.png
 P A65CC046 start-z.png
 P 673D2024 start-zdi.png
 P C19F407B sz-di.png
@@ -31,10 +29,13 @@ P B8EF69EA sz-yl2.png
 P 3C8FDECA sz-zd1.png
 P EC66C0E3 sz-zd2.png
 P AC210392 zj-anniu.png
+P A15985C7 zj-anniu1.png
+P 7F96B268 zj-anniu2.png
 P 1D989B19 zj-di.png
 P 7DAECEB1 zj-pf.png
 P EBB35FAF zj-qd.png
 P 72C704C5 zj-shezhi.png
+P F4A0E80F zjlq.png
 D load
 P F59DCAD4 img_1.png
 P B859206E img_10.png
@@ -73,12 +74,13 @@ P CD2AF3E1 pf-pf.png
 P 58E9F986 pf-qdjs.png
 P A2BEAEC1 pf-wj.png
 P 2BEF79FC pf-yg.png
+P 78840362 pfsy-1.png
 P 8449E547 pfsy-anniu.png
 P 3EB56201 pfsy-anniu2.png
 P B1AEF52C pfsy-di1.png
 P 08CA29EC pfsy-di2.png
-P 8FF4B4FA pfsy-gx.png
-P 6756898A pfsy-gx1.png
+P 3C746023 pfsy-gx.png
+P A5740F22 pfsy-gx1.png
 P 6ED76711 pfsy-pfsy.png
 P 9D1F776A qd-7tiandi.png
 P 17A5AB66 qd-d1.png
@@ -91,3 +93,10 @@ P A8A9DEBB qd-qd.png
 P 1A392318 qd-sl.png
 P AACA8356 qd-zhezhao.png
 P 580CA443 x1234567890.png
+D xyx
+P 2C060420 img_bg.png
+P 10F6E333 img_friend.png
+P B16AEB09 img_icon_bg.png
+P 5CCDD5CD img_icon_dir.png
+P A8435F86 img_icon_wkds.png
+P 1E9B3390 img_red.png

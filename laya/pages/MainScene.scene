@@ -1,13 +1,13 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":152,
-    "selecteID":180,
+    "selectedBox":1,
+    "selecteID":129,
     "searchKey":"Scene",
     "referenceLines":null,
     "props":{"width":750,"sceneColor":"#000000","positionVariance_0":100,"maxPartices":100,"height":1630},
     "nodeParent":-1,
-    "maxID":184,
+    "maxID":187,
     "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
@@ -38,7 +38,7 @@
             "props":{"y":0,"x":0,"width":750,"var":"box_main","height":1630},
             "nodeParent":1,
             "label":"box_main",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -76,15 +76,29 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,btn_start",
-                    "props":{"y":1091,"x":297,"var":"btn_start","skin":"img/start-start.png"},
+                    "props":{"y":1091,"x":220,"var":"btn_start","skin":"img/zj-anniu1.png"},
                     "nodeParent":112,
                     "label":"btn_start",
-                    "isDirectory":false,
+                    "isOpen":true,
+                    "isDirectory":true,
                     "isAniNode":true,
-                    "hasChild":false,
+                    "hasChild":true,
                     "compId":157,
                     "child":[
-                        ]
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "searchKey":"Image",
+                            "props":{"y":42,"x":72,"skin":"img/zj-anniu2.png"},
+                            "nodeParent":157,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":186,
+                            "child":[
+                                ]
+                        }]
                 },
                 {
                     "x":30,
@@ -141,7 +155,7 @@
                         }]
                 }],
             "$LOCKED":true,
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -237,17 +251,30 @@
                 {
                     "type":"Image",
                     "searchKey":"Image,btn_zhijielingqu",
-                    "props":{"y":1089,"x":294,"var":"btn_zhijielingqu","skin":"img/sl-zjlq.png"},
+                    "props":{"y":1089,"x":220,"var":"btn_zhijielingqu","skin":"img/zj-anniu1.png"},
                     "nodeParent":128,
                     "label":"btn_zhijielingqu",
-                    "isDirectory":false,
+                    "isOpen":true,
+                    "isDirectory":true,
                     "isAniNode":true,
-                    "hasChild":false,
+                    "hasChild":true,
                     "compId":166,
                     "child":[
-                        ]
+                        {
+                            "type":"Image",
+                            "searchKey":"Image",
+                            "props":{"y":46,"x":83,"skin":"img/zjlq.png"},
+                            "nodeParent":166,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":185,
+                            "child":[
+                                ]
+                        }]
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -256,7 +283,7 @@
             "props":{"y":0,"x":0,"width":750,"var":"box_lose","height":1630},
             "nodeParent":1,
             "label":"box_lose",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -308,15 +335,29 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,btn_fanhui",
-                    "props":{"y":1089,"x":334,"var":"btn_fanhui","skin":"img/sb-fh.png"},
+                    "props":{"y":1089,"x":220,"var":"btn_fanhui","skin":"img/zj-anniu1.png"},
                     "nodeParent":129,
                     "label":"btn_fanhui",
-                    "isDirectory":false,
+                    "isOpen":true,
+                    "isDirectory":true,
                     "isAniNode":true,
-                    "hasChild":false,
+                    "hasChild":true,
                     "compId":177,
                     "child":[
-                        ]
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "searchKey":"Image",
+                            "props":{"y":47,"x":120,"skin":"img/sl-fh.png"},
+                            "nodeParent":177,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":184,
+                            "child":[
+                                ]
+                        }]
                 },
                 {
                     "x":30,

@@ -5,7 +5,7 @@ class ConstData {
 
     gold: number = 0;
     nowLvl: number = 1; //实际关卡，有轮回
-    totalLvl: number = 11; //总共关卡数
+    totalLvl: number = 20; //总共关卡数
     nowLvlTimes: number = 1; //显示关卡
     winGold: number = 20;
     ownedSkin = [0]; //拥有的皮肤

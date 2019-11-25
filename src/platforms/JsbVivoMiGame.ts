@@ -2,11 +2,11 @@ import { JsbBase, AdvertType, SwitchType } from "./JsbBase";
 
 export default class JsbVivoMiGame extends JsbBase {
 
-    public AppId: string = "";
+    public AppId: string = "100003109";
     public OpenScreenId: string = "";
-    public BannerId: string = "";
-    public RewardedVideoId: string = "";
-    public InsertId: string = "";
+    public BannerId: string = "7981db6d001a4c878ddafd0f00e8cf57";
+    public RewardedVideoId: string = "5194388a679f46c5809586e370de75a7";
+    public InsertId: string = "6d4974bc2fe74c51ac93592034807ebe";
 
     //  public AppId :string = "5bf6f9fa4ece4bd8a62881be4515e440";
     // public OpenScreenId: string = "sss";

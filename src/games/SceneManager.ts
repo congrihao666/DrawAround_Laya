@@ -311,7 +311,7 @@ class SceneManager {
 
     reLoadGame() {
         // g_evnetM.DispatchEvent("add_load_view");
-        // this.equipSkin(g_constD.equipId);
+        this.equipSkin(g_constD.equipId);
         this.destroyScene();
         this.loadGame();
     }
@@ -570,6 +570,7 @@ class SceneManager {
         this.setLocalLvlTimes(g_constD.nowLvlTimes);
 
         this.winTweenPen();
+        g_evnetM.DispatchEvent("open_lunbo_minigame", true);
 
         this.destroyObs();
     }

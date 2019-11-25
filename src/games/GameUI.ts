@@ -36,13 +36,13 @@ export default class GameUI extends ui.MainSceneUI {
             this.box_main.visible = true;
         } else if (type == 2) {
             this.box_win.visible = true;
-            this.btn_zhijielingqu.visible = false;
-            Laya.timer.once(3000, this, ()=> {
-                this.btn_zhijielingqu.visible = true;
-            })
+            // this.btn_zhijielingqu.visible = false;
+            // Laya.timer.once(3000, this, ()=> {
+            //     this.btn_zhijielingqu.visible = true;
+            // })
         } else if (type == 3) {
             this.box_lose.visible = true;
-            this.btn_fanhui.visible = false;
+            // this.btn_fanhui.visible = false;
             this.countdownNum = 10;
             this.font_failCnt.value = this.countdownNum + "";
             Laya.timer.loop(1000, this, this.updateFontNum);
@@ -52,7 +52,7 @@ export default class GameUI extends ui.MainSceneUI {
     updateFontNum() {
         this.countdownNum--;
         this.font_failCnt.value = this.countdownNum + "";
-        if (this.countdownNum == 7) this.btn_fanhui.visible = true;
+        // if (this.countdownNum == 7) this.btn_fanhui.visible = true;
         if (this.countdownNum < 1) {
             this.fanhuiyouxi();
             Laya.timer.clear(this, this.updateFontNum);
@@ -195,7 +195,9 @@ export default class GameUI extends ui.MainSceneUI {
         this.updateLvl();
         this.updatePrg(0);
         g_sceneM.reLoadGame();
+        g_evnetM.DispatchEvent("open_lunbo_minigame", false);
         PlatformManager.Jsb.openAdvert(AdvertType.TableScreen);
+        PlatformManager.Jsb.hideBanner();
     }
 
     doubleStart() {
@@ -204,6 +206,7 @@ export default class GameUI extends ui.MainSceneUI {
 
     startGame() {
         this.openBox(1, false);
+        PlatformManager.Jsb.showBanner();
         if (g_constD.isSkinUsePop) g_sceneM.openSkinUseDlg(true);
     }
 

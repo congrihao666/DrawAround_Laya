@@ -65,8 +65,51 @@
                 "distance": 0,
                 "time": 10000,
                 "width": 9
-            },
-            "lvl6": {}
+            }
+        },
+        "lvl13": {
+            "o1": {
+                "type": 1,
+                "x": 6,
+                "y": -4.5,
+                "angle": 180,
+                "distance": 20,
+                "time": 10000,
+                "width": 5
+            }
+        },
+        "lvl15": {
+            "o1": {
+                "type": 1,
+                "x": 16,
+                "y": -18,
+                "angle": 90,
+                "distance": 34,
+                "time": 10000,
+                "width": 3
+            }
+        },
+        "lvl17": {
+            "o1": {
+                "type": 1,
+                "x": 7,
+                "y": -6,
+                "angle": 180,
+                "distance": 20,
+                "time": 10000,
+                "width": 5
+            }
+        },
+        "lvl19": {
+            "o1": {
+                "type": 2,
+                "x": 13,
+                "y": -9,
+                "angle": 0,
+                "distance": 0,
+                "time": 10000,
+                "width": 9
+            }
         }
     },
     "colors": {
@@ -164,13 +207,73 @@
             "p8": "color4",
             "p9": "color4",
             "p10": "color4"
+        },
+        "lvl12": {
+            "p1": "color1",
+            "p2": "color1",
+            "p3": "color1",
+            "p4": "color4",
+            "p5": "color4",
+            "p6": "color4"
+        },
+        "lvl13": {
+            "p1": "color3",
+            "p2": "color3",
+            "p3": "color3"
+        },
+        "lvl14": {
+            "p1": "color4",
+            "p2": "color1"
+        },
+        "lvl15": {
+            "p1": "color2",
+            "p2": "color4",
+            "p3": "color4",
+            "p4": "color3",
+            "p5": "color3",
+            "p6": "color1",
+            "p7": "color1",
+            "p8": "color1"
+        },
+        "lvl16": {
+            "p1": "color4",
+            "p2": "color2",
+            "p3": "color3"
+        },
+        "lvl17": {
+            "p1": "color1",
+            "p2": "color1"
+        },
+        "lvl18": {
+            "p1": "color16",
+            "p2": "color16",
+            "p3": "color16",
+            "p4": "color16",
+            "p5": "color16"
+        },
+        "lvl19": {
+            "p1": "color1",
+            "p2": "color2",
+            "p3": "color3",
+            "p4": "color4"
+        },
+        "lvl20": {
+            "p1": "color1",
+            "p2": "color3",
+            "p3": "color16",
+            "p4": "color16",
+            "p5": "color16",
+            "p6": "color16",
+            "p7": "color16",
+            "p8": "color16",
+            "p9": "color16"
         }
     },
     "colorType": {
         "color1": [
             255,
-            246,
-            0
+            50,
+            50
         ],
         "color2": [
             138,
@@ -243,8 +346,8 @@
             255
         ],
         "color16": [
-            189,
-            130,
+            173,
+            51,
             255
         ],
         "color17": [

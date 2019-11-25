@@ -5,8 +5,9 @@ import g_sceneM from "./games/SceneManager";
 import GameUI from "./games/GameUI";
 import PubUtils from "./common/PubUtils";
 import g_constD from "./games/ConstData";
-import { AdvertType } from "./platforms/JsbBase";
+import { AdvertType, SwitchType } from "./platforms/JsbBase";
 import g_actionM from "./games/ActionManager";
+import RecommendDlg from "./common/RecommendDlg";
 
 class Main {
 	constructor() {
@@ -33,9 +34,9 @@ class Main {
 		g_evnetM.init();
 		g_sceneM.initEvent();
 
-		Laya.Stat.show();
+		// Laya.Stat.show();
 
-		PlatformManager.init(PlatformType.None);
+		PlatformManager.init(PlatformType.VivoMinGame);
 
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程
 		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
@@ -101,6 +102,7 @@ class Main {
 		
 		g_actionM.init();
 		g_sceneM.init();
+		PlatformManager.initData();
 		
 		
 		let gameui = new GameUI();
@@ -109,13 +111,13 @@ class Main {
 		gameui.zOrder = 100;
 		gameui.init();
 
-		// PlatformManager.Jsb.checkIsMiGame((type:SwitchType) => {
-		// 	if(type == SwitchType.On){
-		// 		let recomui = new RecommendDlg;
-		// 		Laya.stage.addChild(recomui);
-		// 		recomui.zOrder = 200;
-		// 	}
-		// })
+		PlatformManager.Jsb.checkIsMiGame((type:SwitchType) => {
+			if(type == SwitchType.On){
+				let recomui = new RecommendDlg;
+				Laya.stage.addChild(recomui);
+				recomui.zOrder = 200;
+			}
+		})
 
 		if (PlatformManager.platform == PlatformType.VivoMinGame) {
 			Laya.timer.once(3 * 1000, this, () => {

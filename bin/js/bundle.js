@@ -33,6 +33,8 @@
         }
         openRewardVideo() {
         }
+        hideBanner() { }
+        showBanner() { }
         openVibrateShort() {
         }
         openVibrateLong() {
@@ -340,17 +342,31 @@
             console.log(uuid);
             return uuid;
         }
+        static GetNetJson(url, complete, err = null) {
+            let xh = new Laya.HttpRequest();
+            xh.once(Laya.Event.COMPLETE, this, complete);
+            if (err) {
+                xh.once(Laya.Event.ERROR, this, err);
+            }
+            xh.send(url, "", "get", "json", ["Cache-Control", "no-cache"]);
+        }
+        static DataDocking(url, param) {
+            let xh = new Laya.HttpRequest();
+            xh.http.open("POST", url);
+            xh.http.setRequestHeader("Content-Type", "application/json");
+            xh.http.send(param);
+        }
     }
     PubUtils.kEpsilon = 0.000001;
 
     class JsbOppoMiniGame extends JsbBase {
         constructor() {
             super(...arguments);
-            this.AppId = "30098948";
-            this.OpenScreenId = "89933";
-            this.BannerId = "89931";
-            this.RewardedVideoId = "89934";
-            this.InsertId = "89932";
+            this.AppId = "30219614";
+            this.OpenScreenId = "138492";
+            this.BannerId = "138485";
+            this.RewardedVideoId = "138489";
+            this.InsertId = "138487";
             this.isCachedVideo = false;
             this.insertAd = null;
             this.isCachedInsert = false;
@@ -439,9 +455,6 @@
                     this.BannerErrCount = 0;
                 });
                 bannerAd.onHide(() => {
-                    Laya.timer.once(1000 * 60, self, () => {
-                        this.openBannerView();
-                    });
                 });
                 bannerAd.onError(function (err) {
                     console.log("banner 打开失败   " + JSON.stringify(err));
@@ -465,6 +478,12 @@
                 });
                 this.bannerAd = null;
             }
+        }
+        hideBanner() {
+            this.bannerAd.hide();
+        }
+        showBanner() {
+            this.bannerAd.show();
         }
         loadRewardVide() {
             if (this.VoideErrCount >= this.ErrZCount)
@@ -877,11 +896,11 @@
     class JsbVivoMiGame extends JsbBase {
         constructor() {
             super(...arguments);
-            this.AppId = "";
+            this.AppId = "100003109";
             this.OpenScreenId = "";
-            this.BannerId = "";
-            this.RewardedVideoId = "";
-            this.InsertId = "";
+            this.BannerId = "7981db6d001a4c878ddafd0f00e8cf57";
+            this.RewardedVideoId = "5194388a679f46c5809586e370de75a7";
+            this.InsertId = "6d4974bc2fe74c51ac93592034807ebe";
             this.BannerErrCount = 0;
             this.VoideErrCount = 0;
             this.InsertErrCount = 0;
@@ -1667,9 +1686,21 @@
                 this.createView(MainSceneUI.uiView);
             }
         }
-        MainSceneUI.uiView = { "type": "Scene", "props": { "width": 750, "positionVariance_0": 100, "maxPartices": 100, "height": 1630 }, "compId": 1, "child": [{ "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_mouse", "height": 1630 }, "compId": 21 }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_main", "height": 1630 }, "compId": 112, "child": [{ "type": "Image", "props": { "y": 228, "x": 96, "skin": "img/logo.png" }, "compId": 164 }, { "type": "Image", "props": { "y": 903, "x": 220, "var": "btn_doubleStart", "skin": "img/zj-anniu.png" }, "compId": 156 }, { "type": "Image", "props": { "y": 1091, "x": 297, "var": "btn_start", "skin": "img/start-start.png" }, "compId": 157 }, { "type": "Image", "props": { "y": 536, "x": 3, "skin": "img/zj-di.png" }, "compId": 162, "child": [{ "type": "Image", "props": { "y": 11, "x": 15, "var": "img_signin", "skin": "img/zj-qd.png" }, "compId": 160 }] }, { "type": "Image", "props": { "y": 661, "x": 3, "skin": "img/zj-di.png" }, "compId": 163, "child": [{ "type": "Image", "props": { "y": 4, "x": 18, "var": "img_skin", "skin": "img/zj-pf.png" }, "compId": 161 }] }] }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_win", "height": 1630 }, "compId": 128, "child": [{ "type": "Image", "props": { "y": 269, "x": 111, "skin": "img/sl-sl.png" }, "compId": 170 }, { "type": "Image", "props": { "y": 484, "x": 192, "skin": "img/sl-jl1.png" }, "compId": 167, "child": [{ "type": "Image", "props": { "y": 48, "x": 50, "skin": "img/sl-jl2.png" }, "compId": 168 }, { "type": "Image", "props": { "y": 280, "x": 122, "skin": "img/start-z.png" }, "compId": 169 }, { "type": "Label", "props": { "y": 276.5, "x": 184, "width": 129, "var": "label_getdmd", "valign": "middle", "text": "20", "height": 50, "fontSize": 50, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "left" }, "compId": 173 }] }, { "type": "Image", "props": { "y": 903, "x": 220, "var": "btn_wubeilingqu", "skin": "img/sl-lq.png" }, "compId": 165 }, { "type": "Image", "props": { "y": 1089, "x": 294, "var": "btn_zhijielingqu", "skin": "img/sl-zjlq.png" }, "compId": 166 }] }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_lose", "height": 1630 }, "compId": 129, "child": [{ "type": "Image", "props": { "y": 284, "x": 110.5, "skin": "img/sb-sb.png" }, "compId": 174 }, { "type": "Image", "props": { "y": 508, "x": 210, "skin": "img/sb-djs.png" }, "compId": 175 }, { "type": "Image", "props": { "y": 903, "x": 220.5, "var": "btn_jixuyouxi", "skin": "img/sb-jx.png" }, "compId": 176 }, { "type": "Image", "props": { "y": 1089, "x": 334, "var": "btn_fanhui", "skin": "img/sb-fh.png" }, "compId": 177 }, { "type": "FontClip", "props": { "y": 673, "x": 375, "var": "font_failCnt", "value": "10", "skin": "img/1234567890.png", "sheet": "1234567890", "scaleY": 3.2, "scaleX": 3.2, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 183 }] }, { "type": "Image", "props": { "y": 135, "x": 535, "width": 211, "var": "img_dmd", "skin": "img/start-zdi.png", "sizeGrid": "0,30,0,29", "height": 59 }, "compId": 121, "child": [{ "type": "Image", "props": { "y": 5, "x": 13, "skin": "img/start-z.png" }, "compId": 122 }, { "type": "Label", "props": { "y": 12, "x": 75, "width": 127, "var": "label_dmd", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 125 }] }, { "type": "Box", "props": { "y": 138.5, "x": 25, "var": "box_set" }, "compId": 179, "child": [{ "type": "Image", "props": { "skin": "img/zj-shezhi.png" }, "compId": 178 }] }, { "type": "Box", "props": { "y": 90, "x": 235, "var": "box_lvl" }, "compId": 152, "child": [{ "type": "ProgressBar", "props": { "var": "prg_pro", "skin": "img/start-jdt.png", "sizeGrid": "20,0,20,0,1" }, "compId": 180 }, { "type": "Label", "props": { "y": 8, "x": 0, "width": 55, "var": "label_p1", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 181 }, { "type": "Label", "props": { "y": 8, "x": 220, "width": 55, "var": "label_p2", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 182 }] }], "loadList": ["img/logo.png", "img/zj-anniu.png", "img/start-start.png", "img/zj-di.png", "img/zj-qd.png", "img/zj-pf.png", "img/sl-sl.png", "img/sl-jl1.png", "img/sl-jl2.png", "img/start-z.png", "img/sl-lq.png", "img/sl-zjlq.png", "img/sb-sb.png", "img/sb-djs.png", "img/sb-jx.png", "img/sb-fh.png", "img/1234567890.png", "img/start-zdi.png", "img/zj-shezhi.png", "img/start-jdt.png"], "loadList3D": [] };
+        MainSceneUI.uiView = { "type": "Scene", "props": { "width": 750, "positionVariance_0": 100, "maxPartices": 100, "height": 1630 }, "compId": 1, "child": [{ "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_mouse", "height": 1630 }, "compId": 21 }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_main", "height": 1630 }, "compId": 112, "child": [{ "type": "Image", "props": { "y": 228, "x": 96, "skin": "img/logo.png" }, "compId": 164 }, { "type": "Image", "props": { "y": 903, "x": 220, "var": "btn_doubleStart", "skin": "img/zj-anniu.png" }, "compId": 156 }, { "type": "Image", "props": { "y": 1091, "x": 220, "var": "btn_start", "skin": "img/zj-anniu1.png" }, "compId": 157, "child": [{ "type": "Image", "props": { "y": 42, "x": 72, "skin": "img/zj-anniu2.png" }, "compId": 186 }] }, { "type": "Image", "props": { "y": 536, "x": 3, "skin": "img/zj-di.png" }, "compId": 162, "child": [{ "type": "Image", "props": { "y": 11, "x": 15, "var": "img_signin", "skin": "img/zj-qd.png" }, "compId": 160 }] }, { "type": "Image", "props": { "y": 661, "x": 3, "skin": "img/zj-di.png" }, "compId": 163, "child": [{ "type": "Image", "props": { "y": 4, "x": 18, "var": "img_skin", "skin": "img/zj-pf.png" }, "compId": 161 }] }] }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_win", "height": 1630 }, "compId": 128, "child": [{ "type": "Image", "props": { "y": 269, "x": 111, "skin": "img/sl-sl.png" }, "compId": 170 }, { "type": "Image", "props": { "y": 484, "x": 192, "skin": "img/sl-jl1.png" }, "compId": 167, "child": [{ "type": "Image", "props": { "y": 48, "x": 50, "skin": "img/sl-jl2.png" }, "compId": 168 }, { "type": "Image", "props": { "y": 280, "x": 122, "skin": "img/start-z.png" }, "compId": 169 }, { "type": "Label", "props": { "y": 276.5, "x": 184, "width": 129, "var": "label_getdmd", "valign": "middle", "text": "20", "height": 50, "fontSize": 50, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "left" }, "compId": 173 }] }, { "type": "Image", "props": { "y": 903, "x": 220, "var": "btn_wubeilingqu", "skin": "img/sl-lq.png" }, "compId": 165 }, { "type": "Image", "props": { "y": 1089, "x": 220, "var": "btn_zhijielingqu", "skin": "img/zj-anniu1.png" }, "compId": 166, "child": [{ "type": "Image", "props": { "y": 46, "x": 83, "skin": "img/zjlq.png" }, "compId": 185 }] }] }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_lose", "height": 1630 }, "compId": 129, "child": [{ "type": "Image", "props": { "y": 284, "x": 110.5, "skin": "img/sb-sb.png" }, "compId": 174 }, { "type": "Image", "props": { "y": 508, "x": 210, "skin": "img/sb-djs.png" }, "compId": 175 }, { "type": "Image", "props": { "y": 903, "x": 220.5, "var": "btn_jixuyouxi", "skin": "img/sb-jx.png" }, "compId": 176 }, { "type": "Image", "props": { "y": 1089, "x": 220, "var": "btn_fanhui", "skin": "img/zj-anniu1.png" }, "compId": 177, "child": [{ "type": "Image", "props": { "y": 47, "x": 120, "skin": "img/sl-fh.png" }, "compId": 184 }] }, { "type": "FontClip", "props": { "y": 673, "x": 375, "var": "font_failCnt", "value": "10", "skin": "img/1234567890.png", "sheet": "1234567890", "scaleY": 3.2, "scaleX": 3.2, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 183 }] }, { "type": "Image", "props": { "y": 135, "x": 535, "width": 211, "var": "img_dmd", "skin": "img/start-zdi.png", "sizeGrid": "0,30,0,29", "height": 59 }, "compId": 121, "child": [{ "type": "Image", "props": { "y": 5, "x": 13, "skin": "img/start-z.png" }, "compId": 122 }, { "type": "Label", "props": { "y": 12, "x": 75, "width": 127, "var": "label_dmd", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 125 }] }, { "type": "Box", "props": { "y": 138.5, "x": 25, "var": "box_set" }, "compId": 179, "child": [{ "type": "Image", "props": { "skin": "img/zj-shezhi.png" }, "compId": 178 }] }, { "type": "Box", "props": { "y": 90, "x": 235, "var": "box_lvl" }, "compId": 152, "child": [{ "type": "ProgressBar", "props": { "var": "prg_pro", "skin": "img/start-jdt.png", "sizeGrid": "20,0,20,0,1" }, "compId": 180 }, { "type": "Label", "props": { "y": 8, "x": 0, "width": 55, "var": "label_p1", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 181 }, { "type": "Label", "props": { "y": 8, "x": 220, "width": 55, "var": "label_p2", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 182 }] }], "loadList": ["img/logo.png", "img/zj-anniu.png", "img/zj-anniu1.png", "img/zj-anniu2.png", "img/zj-di.png", "img/zj-qd.png", "img/zj-pf.png", "img/sl-sl.png", "img/sl-jl1.png", "img/sl-jl2.png", "img/start-z.png", "img/sl-lq.png", "img/zjlq.png", "img/sb-sb.png", "img/sb-djs.png", "img/sb-jx.png", "img/sl-fh.png", "img/1234567890.png", "img/start-zdi.png", "img/zj-shezhi.png", "img/start-jdt.png"], "loadList3D": [] };
         ui.MainSceneUI = MainSceneUI;
         REG("ui.MainSceneUI", MainSceneUI);
+        class RecommendDlgUI extends Laya.Dialog {
+            constructor() {
+                super();
+            }
+            createChildren() {
+                super.createChildren();
+                this.createView(RecommendDlgUI.uiView);
+            }
+        }
+        RecommendDlgUI.uiView = { "type": "Dialog", "props": { "width": 750, "height": 1630 }, "compId": 2, "child": [{ "type": "Image", "props": { "y": 439, "x": 65, "var": "btn_other_mi_game", "skin": "xyx/img_friend.png", "hitTestPrior": true, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 11, "child": [{ "type": "Image", "props": { "y": -2, "x": 72, "skin": "xyx/img_red.png" }, "compId": 12 }] }, { "type": "Box", "props": { "y": -10, "x": 0, "width": 750, "var": "box_clickAera", "height": 1630 }, "compId": 13, "child": [{ "type": "Image", "props": { "y": 390, "x": 0, "width": 467, "var": "icon_panel", "skin": "xyx/img_bg.png", "height": 120 }, "compId": 5, "child": [{ "type": "Image", "props": { "y": 60, "x": 63, "width": 80, "name": "icon0", "height": 101, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 6 }, { "type": "Image", "props": { "y": 60, "x": 161, "width": 80, "name": "icon1", "height": 101, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 7 }, { "type": "Image", "props": { "y": 61, "x": 259, "width": 80, "name": "icon2", "height": 101, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 8 }, { "type": "Image", "props": { "y": 61, "x": 357, "width": 80, "name": "icon3", "height": 101, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 9 }, { "type": "Image", "props": { "y": -11, "x": 434, "skin": "xyx/img_red.png" }, "compId": 10 }] }] }, { "type": "Image", "props": { "y": 439, "x": 646, "width": 104, "var": "btn_migame", "skin": "xyx/img_icon_bg.png", "rotation": 14, "height": 132, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 14, "child": [{ "type": "Image", "props": { "y": 15.5, "x": 12, "var": "img_icon", "skin": "xyx/img_icon_wkds.png" }, "compId": 15 }] }], "loadList": ["xyx/img_friend.png", "xyx/img_red.png", "xyx/img_bg.png", "xyx/img_icon_bg.png", "xyx/img_icon_wkds.png"], "loadList3D": [] };
+        ui.RecommendDlgUI = RecommendDlgUI;
+        REG("ui.RecommendDlgUI", RecommendDlgUI);
         class SetDlgUI extends Laya.Dialog {
             constructor() {
                 super();
@@ -1691,7 +1722,7 @@
                 this.createView(SigninDlgUI.uiView);
             }
         }
-        SigninDlgUI.uiView = { "type": "Dialog", "props": { "width": 750, "height": 1630 }, "compId": 2, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "img/img_black.png", "height": 1630, "alpha": 0.7 }, "compId": 23 }, { "type": "Image", "props": { "y": 580, "x": 375, "width": 612, "skin": "img/sz-di.png", "sizeGrid": "126,153,175,148", "height": 897, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 4 }, { "type": "Image", "props": { "y": 160, "x": 258, "skin": "skin/qd-qd.png" }, "compId": 5 }, { "type": "Image", "props": { "y": 240, "x": 127, "skin": "skin/qd-d1.png" }, "compId": 6, "child": [{ "type": "Label", "props": { "y": 24.5, "x": 27, "width": 314, "valign": "middle", "text": "第二、七天登陆送", "strokeColor": "#312a2a", "stroke": 5, "height": 35, "fontSize": 35, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 16 }, { "type": "Image", "props": { "y": 70, "x": 106, "skin": "skin/qd-d3.png" }, "compId": 8 }] }, { "type": "Image", "props": { "y": 160, "x": 600, "var": "img_back", "skin": "img/sz-x.png" }, "compId": 7 }, { "type": "Button", "props": { "y": 1043, "x": 247, "var": "label_double", "stateNum": 1, "skin": "skin/qd-sl.png", "labelFont": "SimHei" }, "compId": 9 }, { "type": "Image", "props": { "y": 1172, "x": 294, "var": "label_recieve", "skin": "img/sl-zjlq.png" }, "compId": 10 }, { "type": "List", "props": { "y": 680, "x": 375, "width": 497, "var": "list_signin", "spaceY": 10, "spaceX": 10, "repeatY": 3, "repeatX": 3, "height": 590, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18, "child": [{ "type": "Box", "props": { "y": 95, "x": 79, "width": 159, "renderType": "render", "height": 190, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 17, "child": [{ "type": "Image", "props": { "y": 95, "width": 159, "skin": "skin/qd-7tiandi.png", "sizeGrid": "77,60,50,53", "name": "img_bg1", "height": 190, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 11 }, { "type": "Image", "props": { "y": 95, "skin": "img/start-z.png", "name": "img_icon", "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 13 }, { "type": "Label", "props": { "y": 11, "width": 100, "valign": "middle", "text": "第一天", "strokeColor": "#736565", "stroke": 5, "name": "label_day", "height": 22, "fontSize": 22, "font": "SimHei", "color": "#ffffff", "centerX": 0, "bold": true, "align": "center" }, "compId": 14 }, { "type": "Label", "props": { "y": 157, "width": 200, "valign": "middle", "text": "钻石X990+限定皮肤", "strokeColor": "#736565", "stroke": 4, "name": "label_text", "height": 18, "fontSize": 18, "font": "SimHei", "color": "#ffffff", "centerX": 0, "bold": true, "align": "center" }, "compId": 15 }, { "type": "Image", "props": { "y": 56, "skin": "skin/qd-dui.png", "name": "img_gou", "centerX": 0 }, "compId": 20 }] }] }], "loadList": ["img/img_black.png", "img/sz-di.png", "skin/qd-qd.png", "skin/qd-d1.png", "skin/qd-d3.png", "img/sz-x.png", "skin/qd-sl.png", "img/sl-zjlq.png", "skin/qd-7tiandi.png", "img/start-z.png", "skin/qd-dui.png"], "loadList3D": [] };
+        SigninDlgUI.uiView = { "type": "Dialog", "props": { "width": 750, "height": 1630 }, "compId": 2, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "img/img_black.png", "height": 1630, "alpha": 0.7 }, "compId": 23 }, { "type": "Image", "props": { "y": 580, "x": 375, "width": 612, "skin": "img/sz-di.png", "sizeGrid": "126,153,175,148", "height": 897, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 4 }, { "type": "Image", "props": { "y": 160, "x": 258, "skin": "skin/qd-qd.png" }, "compId": 5 }, { "type": "Image", "props": { "y": 240, "x": 127, "skin": "skin/qd-d1.png" }, "compId": 6, "child": [{ "type": "Label", "props": { "y": 24.5, "x": 27, "width": 314, "valign": "middle", "text": "第二、七天登陆送", "strokeColor": "#312a2a", "stroke": 5, "height": 35, "fontSize": 35, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 16 }, { "type": "Image", "props": { "y": 70, "x": 106, "skin": "skin/qd-d3.png" }, "compId": 8 }] }, { "type": "Image", "props": { "y": 160, "x": 600, "var": "img_back", "skin": "img/sz-x.png" }, "compId": 7 }, { "type": "Button", "props": { "y": 1053, "x": 247, "var": "label_double", "stateNum": 1, "skin": "skin/qd-sl.png", "labelFont": "SimHei" }, "compId": 9 }, { "type": "Image", "props": { "y": 1182, "x": 247, "width": 255, "var": "label_recieve", "skin": "img/zj-anniu1.png", "sizeGrid": "0,0,0,0", "height": 108 }, "compId": 10, "child": [{ "type": "Image", "props": { "y": 36, "x": 56, "skin": "img/zjlq.png" }, "compId": 24 }] }, { "type": "List", "props": { "y": 680, "x": 375, "width": 497, "var": "list_signin", "spaceY": 10, "spaceX": 10, "repeatY": 3, "repeatX": 3, "height": 590, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18, "child": [{ "type": "Box", "props": { "y": 95, "x": 79, "width": 159, "renderType": "render", "height": 190, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 17, "child": [{ "type": "Image", "props": { "y": 95, "width": 159, "skin": "skin/qd-7tiandi.png", "sizeGrid": "77,60,50,53", "name": "img_bg1", "height": 190, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 11 }, { "type": "Image", "props": { "y": 95, "skin": "img/start-z.png", "name": "img_icon", "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 13 }, { "type": "Label", "props": { "y": 11, "width": 100, "valign": "middle", "text": "第一天", "strokeColor": "#736565", "stroke": 5, "name": "label_day", "height": 22, "fontSize": 22, "font": "SimHei", "color": "#ffffff", "centerX": 0, "bold": true, "align": "center" }, "compId": 14 }, { "type": "Label", "props": { "y": 157, "width": 200, "valign": "middle", "text": "钻石X990+限定皮肤", "strokeColor": "#736565", "stroke": 4, "name": "label_text", "height": 18, "fontSize": 18, "font": "SimHei", "color": "#ffffff", "centerX": 0, "bold": true, "align": "center" }, "compId": 15 }, { "type": "Image", "props": { "y": 56, "skin": "skin/qd-dui.png", "name": "img_gou", "centerX": 0 }, "compId": 20 }] }] }], "loadList": ["img/img_black.png", "img/sz-di.png", "skin/qd-qd.png", "skin/qd-d1.png", "skin/qd-d3.png", "img/sz-x.png", "skin/qd-sl.png", "img/zj-anniu1.png", "img/zjlq.png", "skin/qd-7tiandi.png", "img/start-z.png", "skin/qd-dui.png"], "loadList3D": [] };
         ui.SigninDlgUI = SigninDlgUI;
         REG("ui.SigninDlgUI", SigninDlgUI);
         class SkinDlgUI extends Laya.Dialog {
@@ -1778,14 +1809,9 @@
             }
             else if (type == 2) {
                 this.box_win.visible = true;
-                this.btn_zhijielingqu.visible = false;
-                Laya.timer.once(3000, this, () => {
-                    this.btn_zhijielingqu.visible = true;
-                });
             }
             else if (type == 3) {
                 this.box_lose.visible = true;
-                this.btn_fanhui.visible = false;
                 this.countdownNum = 10;
                 this.font_failCnt.value = this.countdownNum + "";
                 Laya.timer.loop(1000, this, this.updateFontNum);
@@ -1794,8 +1820,6 @@
         updateFontNum() {
             this.countdownNum--;
             this.font_failCnt.value = this.countdownNum + "";
-            if (this.countdownNum == 7)
-                this.btn_fanhui.visible = true;
             if (this.countdownNum < 1) {
                 this.fanhuiyouxi();
                 Laya.timer.clear(this, this.updateFontNum);
@@ -1925,13 +1949,16 @@
             this.updateLvl();
             this.updatePrg(0);
             g_sceneM.reLoadGame();
+            g_evnetM.DispatchEvent("open_lunbo_minigame", false);
             PlatformManager.Jsb.openAdvert(3);
+            PlatformManager.Jsb.hideBanner();
         }
         doubleStart() {
             this.openJiliVideo(AdvType.sbkaishi);
         }
         startGame() {
             this.openBox(1, false);
+            PlatformManager.Jsb.showBanner();
             if (g_constD.isSkinUsePop)
                 g_sceneM.openSkinUseDlg(true);
         }
@@ -1966,7 +1993,7 @@
         constructor() {
             this.gold = 0;
             this.nowLvl = 1;
-            this.totalLvl = 11;
+            this.totalLvl = 20;
             this.nowLvlTimes = 1;
             this.winGold = 20;
             this.ownedSkin = [0];
@@ -2776,6 +2803,7 @@
             }), delt);
         }
         reLoadGame() {
+            this.equipSkin(g_constD.equipId);
             this.destroyScene();
             this.loadGame();
         }
@@ -2990,6 +3018,7 @@
             this.setLocalLvl(g_constD.nowLvl);
             this.setLocalLvlTimes(g_constD.nowLvlTimes);
             this.winTweenPen();
+            g_evnetM.DispatchEvent("open_lunbo_minigame", true);
             this.destroyObs();
         }
         gameLose() {
@@ -3007,6 +3036,201 @@
     }
     SceneManager.Instance = new SceneManager;
     var g_sceneM = SceneManager.Instance;
+
+    class RecommendDlg extends ui.RecommendDlgUI {
+        constructor() {
+            super();
+            this.lunboList = [];
+            this.cur_index = 0;
+            this.init();
+        }
+        init() {
+            this.mouseThrough = true;
+            this.btn_other_mi_game.visible = false;
+            this.btn_other_mi_game.mouseThrough = false;
+            this.openMini(false);
+            this.openLunbo(false);
+            g_miniGM.initMinGame();
+            g_evnetM.AddEvent("load_mi_config_success", this, function () {
+                this.registClick();
+                this.initLunbo();
+            });
+            g_evnetM.AddEvent("open_lunbo_minigame", this, this.openLunbo);
+        }
+        openOtherGameClick(e) {
+            let btn = e.target;
+            let model = new DataDockingMiGameModel();
+            model.fromName = "color_hole_laya";
+            model.url = "http://pushgame.kuaizhiyou.cn/log";
+            model.toName = e.target.name;
+            model.index = btn.tag;
+            model.gameId = g_miniGM.mi_game_id;
+            model.userId = PlatformManager.userid;
+            PubUtils.DataDocking(model.url, model.getParam());
+            PlatformManager.Jsb.openGame(e.target.name);
+            console.log("打开分享视频", e.target.name);
+        }
+        onMiGameClick() {
+            let obj = this.lunboList[this.cur_index % this.lunboList.length];
+            let model = new DataDockingMiGameModel();
+            model.fromName = g_miniGM.mi_game_name;
+            model.url = "http://pushgame.kuaizhiyou.cn/log";
+            model.toName = obj["lunbo_apkname"];
+            model.index = 0;
+            model.gameId = g_miniGM.mi_game_id;
+            model.userId = PlatformManager.userid;
+            PubUtils.DataDocking(model.url, model.getParam());
+            PlatformManager.Jsb.openGame(obj["lunbo_apkname"]);
+        }
+        registClick() {
+            let stayData = g_miniGM.stayData;
+            let mi_game_id = g_miniGM.mi_game_id;
+            let migameData;
+            for (let k = 0; k < stayData.length; ++k) {
+                if (+stayData[k]["id"] != mi_game_id)
+                    continue;
+                this.btn_other_mi_game.visible = true;
+                migameData = stayData[k];
+                break;
+            }
+            if (!migameData)
+                return;
+            for (let i = 0; i < this.icon_panel.numChildren; ++i) {
+                let btn = this.icon_panel.getChildByName("icon" + i);
+                !!btn && (btn.visible = false);
+                let listName = "list" + (i + 1);
+                if (!!migameData[listName]) {
+                    if (!btn)
+                        continue;
+                    btn.name = migameData["list" + (i + 1) + "_apkname"];
+                    btn.skin = "https://kuaizhiyou.com.cn/fenfa/icon/" + migameData[listName + "_icon"] + ".png";
+                    btn.tag = i + 1;
+                    btn.visible = true;
+                    PubUtils.registerScaleListener(btn, this, this.openOtherGameClick, 1.2, true);
+                }
+            }
+            PubUtils.registerTouchListenner(this.box_clickAera, this, null, null, function () {
+                this.openMini(false);
+            }, null, true);
+            PubUtils.registerTouchListenner(this.btn_other_mi_game, this, null, null, function () {
+                this.openMini(true);
+            }, null, true);
+        }
+        openMini(vis) {
+            this.box_clickAera.visible = vis;
+        }
+        initLunbo() {
+            let lunboData = g_miniGM.lunboData;
+            let mi_game_id = g_miniGM.mi_game_id;
+            let oneData;
+            for (let k = 0; k < lunboData.length; ++k) {
+                if (lunboData[k]["id"] != "" && +lunboData[k]["id"] != mi_game_id)
+                    continue;
+                oneData = lunboData[k];
+                break;
+            }
+            if (!oneData)
+                return;
+            let len = +oneData["lunbo_num"];
+            for (let i = 0; i < len; ++i) {
+                if (oneData["lunbo" + i + "_icon"] == "")
+                    break;
+                let obj = {
+                    cd: parseInt(oneData["lunbo_cd"]),
+                    lunbo_apkname: oneData["lunbo" + i + "_apkname"],
+                    lunbo_icon: "https://kuaizhiyou.com.cn/fenfa/icon/" + oneData["lunbo" + i + "_icon"] + ".png",
+                };
+                this.lunboList.push(obj);
+            }
+            if (this.lunboList.length > 0) {
+                this.img_icon.skin = this.lunboList[this.cur_index]["lunbo_icon"];
+                PubUtils.registerScaleListener(this.btn_migame, this, this.onMiGameClick, 1.2, true);
+                this.timeline = new Laya.TimeLine();
+                this.timeline.addLabel("right0", 0).to(this.btn_migame, { rotation: -15 }, 0.3 * 1000);
+                this.timeline.addLabel("left1", 0).to(this.btn_migame, { rotation: 15 }, 0.3 * 1000);
+                this.timeline.addLabel("right2", 0).to(this.btn_migame, { rotation: -15 }, 0.3 * 1000);
+                this.timeline.addLabel("left3", 0).to(this.btn_migame, { rotation: 15 }, 0.3 * 1000);
+                this.timeline.addLabel("right4", 0).to(this.btn_migame, { rotation: -15 }, 0.3 * 1000);
+                this.timeline.play();
+                this.timeline.on(Laya.Event.COMPLETE, this, this.rotateOver);
+            }
+        }
+        rotateOver() {
+            this.cur_index++;
+            this.img_icon.skin = this.lunboList[this.cur_index % this.lunboList.length]["lunbo_icon"];
+            Laya.timer.once(2 * 1000, this, () => {
+                this.timeline.play();
+            });
+        }
+        openLunbo(vis) {
+            this.btn_migame.visible = vis;
+        }
+    }
+    class DataDockingModel {
+        constructor() {
+            this.url = "";
+            this.userId = "";
+        }
+        getParam() {
+            return "";
+        }
+    }
+    class DataDockingMiGameModel extends DataDockingModel {
+        constructor() {
+            super(...arguments);
+            this.fromName = "";
+            this.toName = "";
+            this.index = 0;
+            this.gameId = 0;
+        }
+        getParam() {
+            return `fromName=${this.fromName}&toName=${this.toName}&index=${this.index}&gameId=${this.gameId}&userId=${this.userId}`;
+        }
+    }
+    class MiniGameManager {
+        constructor() {
+            this.lunboList = [];
+            this.currentIndex = 0;
+            this.mi_game_id = 20;
+            this.mi_game_name = "com_kzy_cbty";
+        }
+        initMinGame() {
+            PlatformManager.Jsb.checkIsMiGame((flag) => {
+                this.loadMiConfig();
+            });
+        }
+        loadMiConfig() {
+            let url = "https://kuaizhiyou.com.cn/fenfa/fenfalunbo.json";
+            PubUtils.GetNetJson(url, (res) => {
+                this.lunboData = res;
+                this.parseData(res);
+                let url = "https://kuaizhiyou.com.cn/fenfa/fenfalist.json";
+                PubUtils.GetNetJson(url, (res) => {
+                    this.stayData = res;
+                    g_evnetM.DispatchEvent("load_mi_config_success");
+                });
+            });
+        }
+        parseData(res) {
+            for (let i = 1; i < res.length; i++) {
+                let json = res[i];
+                if (json["id"] == "")
+                    break;
+                if (parseInt(json["id"]) == this.mi_game_id) {
+                    for (let j = 1; j < json["lunbo_num"]; j++) {
+                        let obj = {
+                            cd: parseInt(json["lunbo_cd"]),
+                            lunbo_apkname: json["lunbo" + j + "_apkname"],
+                            lunbo_icon: "https://kuaizhiyou.com.cn/fenfa/icon/" + json["lunbo" + j + "_icon"] + ".png",
+                        };
+                        this.lunboList.push(obj);
+                    }
+                }
+            }
+        }
+    }
+    MiniGameManager.Instance = new MiniGameManager;
+    let g_miniGM = MiniGameManager.Instance;
 
     class Main {
         constructor() {
@@ -3031,8 +3255,7 @@
             Laya.MouseManager.multiTouchEnabled = false;
             g_evnetM.init();
             g_sceneM.initEvent();
-            Laya.Stat.show();
-            PlatformManager.init(PlatformType.None);
+            PlatformManager.init(PlatformType.VivoMinGame);
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {
@@ -3082,11 +3305,19 @@
             }
             g_actionM.init();
             g_sceneM.init();
+            PlatformManager.initData();
             let gameui = new GameUI();
             gameui.openBox(1);
             Laya.stage.addChild(gameui);
             gameui.zOrder = 100;
             gameui.init();
+            PlatformManager.Jsb.checkIsMiGame((type) => {
+                if (type == 1) {
+                    let recomui = new RecommendDlg;
+                    Laya.stage.addChild(recomui);
+                    recomui.zOrder = 200;
+                }
+            });
             if (PlatformManager.platform == PlatformType.VivoMinGame) {
                 Laya.timer.once(3 * 1000, this, () => {
                     PlatformManager.Jsb.openAdvert(8);
