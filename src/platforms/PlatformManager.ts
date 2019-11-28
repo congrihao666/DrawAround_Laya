@@ -53,7 +53,7 @@ export class PlatformManager {
             jsb = new JsbAndroid();
         } else if (this.platform == PlatformType.OppoMinGame) {
             jsb = new JsbOppoMiniGame();
-        } else if (this.platform == PlatformType.TTMinGame && typeof tt.createRewardedVideoAd == "function") {
+        } else if (this.platform == PlatformType.TTMinGame) {
             jsb = new JsbTouTiao();
         } else if (this.platform == PlatformType.VivoMinGame && qg.getSystemInfoSync().platformVersionCode >= 1031) {
             jsb = new JsbVivoMiGame();

@@ -1,32 +1,51 @@
 import { JsbBase, AdvertType } from "./JsbBase";
+import { VideoCom } from "../Component/VideoCom";
 
 export default class JsbTouTiao extends JsbBase {
 
 
-    public BannerId: string = "442t6prlson1015acg";
+    public BannerId: string = "tlag64lsjj4g969k2f";
 
-    public RewardedVideoId: string = "1a5c43n1gncb109eea";
+    public RewardedVideoId: string = "1c0jag1fd3geb88400";
 
     public bannerAd: any = null;
 
     public videoAd: any = null;
 
     public isCachedVideo: boolean = false;
-    openVibrate() {
 
-    }
+    public game: any = null;
+    public type: any = null;    //0复活,1积分翻倍
 
-    openAdvert(type: AdvertType) {
+    public btn_shart: any = null;
+    public btna: any = null;
+    public btnb: any = null;
+    public btnc: any = null;
+    public btnd: any = null;
+    public share_demand: number = 1;  //多少关显示一次分享
+
+    public windowWidth: number;
+    public windowHeight: number;
+
+    public excitationHandler: Laya.Handler;
+
+    public openAdvert(type: AdvertType) {
         switch (type) {
             case AdvertType.OpenScreen: {
                 this.openSplashAd();
                 break;
             }
-            case AdvertType.ExcitationVideo:{
+
+            case AdvertType.ExcitationVideo: {
                 this.openRewardVideo();
                 break;
             }
+
         }
+    }
+
+    public openVideoAdvert() {
+        this.openRewardVideo();
     }
 
     openVibrateShort() {
@@ -52,8 +71,10 @@ export default class JsbTouTiao extends JsbBase {
     }
 
     openSplashAd() {
-        // this.openBanner();
-        this.loadVideo();
+        this.openBanner();
+        if(typeof tt.createRewardedVideoAd == "function"){
+            this.loadVideo();
+        } 
     }
 
     openBanner() {
@@ -61,13 +82,11 @@ export default class JsbTouTiao extends JsbBase {
 
         if (this.bannerAd == null) {
             // 创建一个居于屏幕底部正中的广告
-            // const {
-            //     windowWidth,
-            //     windowHeight,
-            // } = tt.getSystemInfoSync();
-            var systemInfo = tt.getSystemInfoSync();
-            const windowWidth = systemInfo.windowWidth;
-            const windowHeight = systemInfo.windowHeight;
+            let windowWidth = tt.getSystemInfoSync().windowWidth;
+            let windowHeight = tt.getSystemInfoSync().windowHeight;
+            this.windowWidth = windowWidth;
+            this.windowHeight = windowHeight;
+
             var targetBannerAdWidth = 200;
             console.log("openBanner -----------------  windowWidth = " + windowWidth + "  windowHeight = " + windowHeight);
 
@@ -88,7 +107,7 @@ export default class JsbTouTiao extends JsbBase {
                 // 如果一开始设置的 banner 宽度超过了系统限制，可以在此处加以调整
                 if (targetBannerAdWidth != size.width) {
                     targetBannerAdWidth = size.width;
-                    bannerAd.style.top = windowHeight - (size.width / 16 * 9);
+                    bannerAd.style.top = windowHeight - (size.width / 16 * 9) + 56;
                     bannerAd.style.left = (windowWidth - size.width) / 2;
                 }
             });
@@ -134,7 +153,6 @@ export default class JsbTouTiao extends JsbBase {
             })
 
             this.videoAd = videoAd;
-            // videoAd.load();
 
             videoAd.onLoad(() => {
                 console.log("激励视频  加载成功 -- ");
@@ -144,17 +162,25 @@ export default class JsbTouTiao extends JsbBase {
             videoAd.onError((err) => {
                 console.log("激励视频加载失败 -- " + JSON.stringify(err));
 
-                AndroidToJs.CallJs("Advertisement", AdvertType.ExcitationVideo + "," + 0);
-
-                Laya.timer.once(1000 * 60, self, () => {
+                setTimeout(() => {
                     this.loadVideo();
-                });
+                }, 1000 * 60);
             });
 
             videoAd.onClose(res => {
                 if (res.isEnded) {
                     // 给予奖励
-                    AndroidToJs.CallJs("Advertisement", AdvertType.ExcitationVideo + "," + 1);
+                    console.log("正常播放结束，可以下发游戏奖励");
+                    
+                    // AudioManager.getInstance().playMusic(Res.bgMusic, true);
+                    // (<any>window).NativeCon.revivalResult("1");
+                    AndroidToJs.CallJs("Advertisement", AdvertType.ExcitationVideo + ",1");
+                    this.loadVideo();
+                }else{
+                    console.log("播放中途退出，不下发游戏奖励");
+                    // AudioManager.getInstance().playMusic(Res.bgMusic, true);
+                    // (<any>window).NativeCon.revivalResult("0");
+                    AndroidToJs.CallJs("Advertisement", AdvertType.ExcitationVideo + ",0");
                     this.loadVideo();
                 }
             });
@@ -166,13 +192,18 @@ export default class JsbTouTiao extends JsbBase {
                     console.log('手动加载成功');
                 }).catch(err => {
                     console.log('广告组件出现问题', err);
-                    AndroidToJs.CallJs("Advertisement", AdvertType.ExcitationVideo + "," + 0);
 
-                    Laya.timer.once(1000 * 60, self, () => {
+                    setTimeout(() => {
                         this.loadVideo();
-                    });
+                    }, 1000 * 60);
                 });;
         }
+    }
+    public runRewardHandler(value: number) {
+        if (this.excitationHandler) {
+            this.excitationHandler.runWith(value);
+        }
+        this.excitationHandler = undefined;
     }
 
     openRewardVideo() {
@@ -183,13 +214,252 @@ export default class JsbTouTiao extends JsbBase {
                 })
                 .catch(err => {
                     console.log('openRewardVideo  广告组件出现问题', err);
-                    AndroidToJs.CallJs("Advertisement", AdvertType.ExcitationVideo + "," + 0);
-
-
-                    Laya.timer.once(1000 * 60, self, () => {
+                    setTimeout(() => {
                         this.loadVideo();
-                    });
+                    }, 1000 * 60);
                 });
         }
+    }
+
+    /** 广告隐藏*/
+    hideBannder() {
+        console.log("广告隐藏")
+        if (this.bannerAd) {
+            this.bannerAd.hide()
+        }
+    }
+
+    /** 广告显示*/
+    showBannder() {
+        console.log("广告显示")
+        if (this.bannerAd) {
+            this.bannerAd.show()
+        }
+    }
+
+    /** 判断是否ios*/
+    isIos() {
+        const systemInfo = tt.getSystemInfoSync();
+        return systemInfo.platform == 'ios';
+    }
+
+    /** 录制开关*/
+    videoPlay(game, type) {
+        this.game = game;
+        if (type) {
+            console.log("开始游戏,开始录制")
+            let video_com = game.btn_camera.getComponent(VideoCom);
+            video_com.isPlay(game, type);
+            video_com.onResetVideoClick();
+            game.btn_camera.visible = false;
+        } else {
+            //停止录制
+            console.log("结束游戏,停止录制")
+            let video_com = game.btn_camera.getComponent(VideoCom);
+            video_com.isPlay(game, type);
+            video_com.onResetVideoClick();
+            game.btn_camera.visible = true;
+        }
+    }
+
+    /** 分享*/
+    onShare(game, type) {
+        console.log("分享");
+        if (game.btn_camera.visible) {
+            let video_com = game.btn_camera.getComponent(VideoCom);
+            video_com.share(type);
+        }
+    }
+
+    /** 生成更多游戏按钮*/
+    gameBtn() {
+        if (this.btn_shart) {
+            this.btn_shart.show();
+        } else {
+            let id = "ttf3f0854d6cda1ee2";
+            let skin = "res/push/img_icon.png";
+            this.btn_shart = tt.createMoreGamesButton({
+                type: "image",
+                image: skin,
+                style: {
+                    left: 0,
+                    top: 500,
+                    width: 40,
+                    height: 35,
+                    lineHeight: 40,
+                    backgroundColor: "#ff0000",
+                    textColor: "#ffffff",
+                    textAlign: "center",
+                    fontSize: 16,
+                    borderRadius: 4,
+                    borderWidth: 0,
+                    borderColor: '#ff0000'
+                },
+                appLaunchOptions: [
+                    {
+                        appId: id,
+                        query: "foo=bar&baz=qux",
+                        extraData: {}
+                    },
+                    // {...}
+                ],
+                onNavigateToMiniGame(res) {
+                    console.log('跳转其他小游戏', res)
+                }
+            });
+
+            this.btn_shart.onTap(() => {
+                console.log('点击更多游戏')
+            });
+        }
+    }
+
+    /** 隐藏更多游戏按钮*/
+    btnDestroy() {
+        if (this.btn_shart) {
+            this.btn_shart.hide();
+        }
+    }
+
+    /** 生成4宫格游戏按钮*/
+    gameBtns() {
+        if (this.btna) {
+            this.btna.show();
+            this.btnb.show();
+            this.btnc.show();
+            this.btnd.show();
+        } else {
+            let n = 720 - this.windowHeight;
+            this.game.bg_push.y = 1292 - n*(1630/750);
+            console.log('this.game.bg_push.y---'+ this.game.bg_push.y);
+
+            let id = "ttf3f0854d6cda1ee2";
+            this.btna = tt.createMoreGamesButton({
+                type: "image",
+                image: "res/push/qqbwticon.png",
+                style: {
+                    left: 22,
+                    top: this.windowHeight - 100,
+                    width: 64,
+                    height: 80,
+                    lineHeight: 40,
+                    backgroundColor: "#ff0000",
+                    textColor: "#ffffff",
+                    textAlign: "center",
+                    fontSize: 16,
+                    borderRadius: 4,
+                    borderWidth: 0,
+                    borderColor: '#ff0000'
+                },
+                appLaunchOptions: [
+                    {
+                        appId: id,
+                        query: "foo=bar&baz=qux",
+                        extraData: {}
+                    },
+                ],
+            });
+
+            this.btnb = tt.createMoreGamesButton({
+                type: "image",
+                image: "res/push/ggphqicon.png",
+                style: {
+                    left: 94,
+                    top: this.windowHeight - 100,
+                    width: 64,
+                    height: 80,
+                    lineHeight: 40,
+                    backgroundColor: "#ff0000",
+                    textColor: "#ffffff",
+                    textAlign: "center",
+                    fontSize: 16,
+                    borderRadius: 4,
+                    borderWidth: 0,
+                    borderColor: '#ff0000'
+                },
+                appLaunchOptions: [
+                    {
+                        appId: id,
+                        query: "foo=bar&baz=qux",
+                        extraData: {}
+                    },
+                ],
+            });
+
+            this.btnc = tt.createMoreGamesButton({
+                type: "image",
+                image: "res/push/bzklicon.png",
+                style: {
+                    left: 166,
+                    top: this.windowHeight - 100,
+                    width: 64,
+                    height: 80,
+                    lineHeight: 40,
+                    backgroundColor: "#ff0000",
+                    textColor: "#ffffff",
+                    textAlign: "center",
+                    fontSize: 16,
+                    borderRadius: 4,
+                    borderWidth: 0,
+                    borderColor: '#ff0000'
+                },
+                appLaunchOptions: [
+                    {
+                        appId: id,
+                        query: "foo=bar&baz=qux",
+                        extraData: {}
+                    },
+                ],
+            });
+
+            this.btnd = tt.createMoreGamesButton({
+                type: "image",
+                image: "res/push/hdcqdzzicon.png",
+                style: {
+                    left: 240,
+                    top: this.windowHeight - 100,
+                    width: 64,
+                    height: 80,
+                    lineHeight: 40,
+                    backgroundColor: "#ff0000",
+                    textColor: "#ffffff",
+                    textAlign: "center",
+                    fontSize: 16,
+                    borderRadius: 4,
+                    borderWidth: 0,
+                    borderColor: '#ff0000'
+                },
+                appLaunchOptions: [
+                    {
+                        appId: id,
+                        query: "foo=bar&baz=qux",
+                        extraData: {}
+                    },
+                ],
+            });
+        }
+    }
+
+    /** 隐藏4个更多游戏按钮*/
+    btnDestroys() {
+        if (this.btna) {
+            this.btna.hide();
+            this.btnb.hide();
+            this.btnc.hide();
+            this.btnd.hide();
+        }
+    }
+
+    /** 是否显示分享*/
+    showShare(game, Gate_number) {
+        this.game = game;
+        let video_com = game.btn_camera.getComponent(VideoCom);
+        let isplay = video_com.isRecord;
+        return (Gate_number / this.share_demand == Math.floor(Gate_number / this.share_demand)) && !isplay;
+    }
+
+    /** 是不是胖子*/
+    isFat(){
+        return (this.windowHeight / this.windowWidth) < 1.9;
     }
 }

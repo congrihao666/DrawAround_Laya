@@ -18,6 +18,7 @@ export default class SigninDlg extends ui.SigninDlgUI {
 
     closeDlg() {
         g_sceneM.openSignin(false);
+        PlatformManager.Jsb.showBannder();
     }
 
     init() {

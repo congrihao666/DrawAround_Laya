@@ -29,6 +29,8 @@ declare module tt {
   export function getSystemInfoSync(): any;
 
   export function createRewardedVideoAd(obj: any): any;
+  
+  export function createMoreGamesButton(obj: any): any;
 
   export function getStorageSync(key: string): any;
 

@@ -4,7 +4,7 @@ import g_actionM from "./ActionManager";
 import LoadView from "../common/LoadView";
 import globalFun from "./GlobalFunc";
 import PubUtils from "../common/PubUtils";
-import { PlatformManager } from "../platforms/PlatformManager";
+import { PlatformManager, PlatformType } from "../platforms/PlatformManager";
 import SetDlg from "../common/SetDlg";
 import SkinDlg from "../common/SkinDlg";
 import SigninDlg from "../common/SigninDlg";
@@ -550,7 +550,9 @@ class SceneManager {
         Laya.Tween.to(targ3, {value: fvec.y-6, update: new Laya.Handler(this, function () {
             this.myPenTrans.position = new Laya.Vector3(fvec.x, targ3.value, fvec.z);
         })}, movet2, null, new Laya.Handler(this, function () {
-            this.playWinEff();
+            if(PlatformManager.platform != PlatformType.TTMinGame && !PlatformManager.Jsb.isIos()){
+                this.playWinEff();
+            }
             this.playSound(g_constD.winM);
             Laya.timer.once(3000, this, ()=> {
                 g_evnetM.DispatchEvent("game_win");

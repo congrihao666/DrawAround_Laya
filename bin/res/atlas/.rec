@@ -2,6 +2,8 @@ D .
 D img
 P D6189AF1 1234567890.png
 P 69815F5B img_black.png
+P 70CAD6D4 img_camera.png
+P B22D4202 img_record.png
 P C50F9F52 logo.png
 P ABD95905 sb-djs.png
 P E49AF675 sb-jx.png
@@ -50,6 +52,12 @@ P 948EFBEC img_6.png
 P 76144C00 img_7.png
 P AFD595C1 img_8.png
 P D6DFE85C img_9.png
+D push
+P 0B522788 img_bg_1.png
+P 10F6E333 img_icon.png
+P 1E9B3390 img_red.png
+P DFB2588C img_share.png
+P 2C060420 push_bg_img.png
 D skin
 P 463E8266 checkbox.png
 P 83B1356E ditian.png

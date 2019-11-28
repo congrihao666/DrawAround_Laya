@@ -3,18 +3,19 @@ import g_evnetM from "../common/EventManager";
 import g_sceneM from "./SceneManager";
 import g_actionM from "./ActionManager";
 import g_constD from "./ConstData";
-import { PlatformManager } from "../platforms/PlatformManager";
+import { PlatformManager, PlatformType } from "../platforms/PlatformManager";
 import { AdvertType } from "../platforms/JsbBase";
 import g_tipM from "../common/TipManger";
+import { VideoCom } from "../Component/VideoCom";
 
 export default class GameUI extends ui.MainSceneUI {
     countdownNum: number = 10;
-    
+
     constructor() {
-		super();
-		this.initMouseEvent();
+        super();
+        this.initMouseEvent();
     }
-    
+
     init() {
         this.initGame();
         Laya.timer.once(500, this, this.playBGM);
@@ -34,14 +35,17 @@ export default class GameUI extends ui.MainSceneUI {
         if (!isopen) return;
         if (type == 1) {
             this.box_main.visible = true;
+            this.startType(1);
         } else if (type == 2) {
             this.box_win.visible = true;
+            this.startType(3);
             // this.btn_zhijielingqu.visible = false;
             // Laya.timer.once(3000, this, ()=> {
             //     this.btn_zhijielingqu.visible = true;
             // })
         } else if (type == 3) {
             this.box_lose.visible = true;
+            this.startType(3);
             // this.btn_fanhui.visible = false;
             this.countdownNum = 10;
             this.font_failCnt.value = this.countdownNum + "";
@@ -61,8 +65,8 @@ export default class GameUI extends ui.MainSceneUI {
 
     initMouseEvent() {
         this.box_mouse.on(Laya.Event.MOUSE_DOWN, this, this.mouseDown);
-		// this.box_mouse.on(Laya.Event.MOUSE_MOVE, this, this.mouseMove);
-		this.box_mouse.on(Laya.Event.MOUSE_UP, this, this.mouseUp);
+        // this.box_mouse.on(Laya.Event.MOUSE_MOVE, this, this.mouseMove);
+        this.box_mouse.on(Laya.Event.MOUSE_UP, this, this.mouseUp);
         this.box_mouse.on(Laya.Event.MOUSE_OUT, this, this.mouseOut);
 
         this.btn_start.on(Laya.Event.CLICK, this, this.startGame);
@@ -75,25 +79,36 @@ export default class GameUI extends ui.MainSceneUI {
         this.box_set.on(Laya.Event.CLICK, this, this.openSet);
         this.img_skin.on(Laya.Event.CLICK, this, this.openSkin);
         this.img_signin.on(Laya.Event.CLICK, this, this.openSignin);
-        
+
         g_evnetM.AddEvent("game_win", this, this.gameWin);
-		g_evnetM.AddEvent("game_lose", this, this.gameLose);
+        g_evnetM.AddEvent("game_lose", this, this.gameLose);
         g_evnetM.AddEvent("update_gold", this, this.updateGold);
         g_evnetM.AddEvent("update_prg", this, this.updatePrg);
         g_evnetM.AddEvent("Advertisement", this, this.advBack);
+
+        this.btn_share.on(Laya.Event.CLICK, this, this.videoShare);
+        this.again.on(Laya.Event.CLICK, this, this.againType);
+
+        if (PlatformManager.platform != PlatformType.TTMinGame) {
+            this.btn_camera.visible = false;
+        } else {
+            this.btn_camera.visible = true;
+            this.btn_camera.addComponent(VideoCom);
+        }
     }
 
     openSet(e: Laya.Event) {
         e.stopPropagation();
         g_sceneM.openSet(true);
     }
-    
+
     openSkin(e: Laya.Event) {
         e.stopPropagation();
         g_sceneM.openSkin(true);
     }
 
     openSignin(e: Laya.Event) {
+        PlatformManager.Jsb.hideBannder();
         e.stopPropagation();
         g_sceneM.openSignin(true);
     }
@@ -104,7 +119,7 @@ export default class GameUI extends ui.MainSceneUI {
         !g_sceneM.isPausing && g_sceneM.setPenH(true);
     }
 
-    mouseMove(e: Laya.Event) {}
+    mouseMove(e: Laya.Event) { }
 
     mouseUp() {
         if (!g_sceneM.isGamimg) return;
@@ -138,7 +153,12 @@ export default class GameUI extends ui.MainSceneUI {
     }
 
     fanhuiyouxi() {
-        this.reloadGame();
+        if (PlatformManager.platform == PlatformType.TTMinGame) {
+            this.shareBox.visible = true;
+            this.btn_share.visible = true;
+        } else {
+            this.reloadGame();
+        }
     }
 
     wubeilingqu() {
@@ -146,8 +166,13 @@ export default class GameUI extends ui.MainSceneUI {
     }
 
     zhijielingqu() {
-        this.addWinDmd(false);
-        this.reloadGame();
+        if (PlatformManager.platform == PlatformType.TTMinGame) {
+            this.shareBox.visible = true;
+            this.btn_share.visible = true;
+        } else {
+            this.addWinDmd(false);
+            this.reloadGame();
+        }
     }
 
     openJiliVideo(type: number) {
@@ -166,10 +191,10 @@ export default class GameUI extends ui.MainSceneUI {
         let bol3 = g_constD.advType == AdvType.jxyx;
         if (!(bol1 || bol2 || bol3)) return;
         let arr = data.split(",");
-		let success = +arr[1];
-		let type = +arr[0];
-		if (g_sceneM.isMusicOn) this.playBGM();
-		if (type != AdvertType.ExcitationVideo || success != 1) return;
+        let success = +arr[1];
+        let type = +arr[0];
+        if (g_sceneM.isMusicOn) this.playBGM();
+        if (type != AdvertType.ExcitationVideo || success != 1) return;
         if (bol1) {
             g_sceneM.isDoubleStart = true;
             this.startGame();
@@ -206,6 +231,7 @@ export default class GameUI extends ui.MainSceneUI {
 
     startGame() {
         this.openBox(1, false);
+        this.startType(2);
         PlatformManager.Jsb.showBanner();
         if (g_constD.isSkinUsePop) g_sceneM.openSkinUseDlg(true);
     }
@@ -227,6 +253,51 @@ export default class GameUI extends ui.MainSceneUI {
 
     updatePrg(value: number) {
         this.prg_pro.value = value;
+    }
+
+    /** 游戏状态*/
+    private startType(type) {
+        if (PlatformManager.platform != PlatformType.TTMinGame) return;
+
+        if (type == 1) {
+            //开始前,销毁4宫格游戏按钮,生成更多游戏按钮
+            console.log('开始前');
+            this.shareBox.visible = false;
+            if (PlatformManager.Jsb.isIos()) return;
+            PlatformManager.Jsb.btnDestroys();
+            this.bg_push.visible = false;
+            PlatformManager.Jsb.gameBtn();
+        } else if (type == 2) {
+            //开始游戏时,隐藏广告,开始录制,销毁更多游戏按钮
+            console.log('开始游戏时');
+            PlatformManager.Jsb.hideBannder();
+            PlatformManager.Jsb.videoPlay(this, 1);
+            if (PlatformManager.Jsb.isIos()) return;
+            PlatformManager.Jsb.btnDestroy();
+        } else if (type == 3) {
+            //结算时,停止录制,生成4宫格按钮
+            console.log('结算时');
+            PlatformManager.Jsb.videoPlay(this, 0);
+            if (PlatformManager.Jsb.isIos()) return;
+            this.bg_push.visible = true;
+            PlatformManager.Jsb.gameBtns();
+        }
+
+    }
+
+    /** 分享录制视频*/
+    private videoShare() {
+        this.btn_share.visible = false;
+        PlatformManager.Jsb.onShare(this, this.box_win.visible);
+    }
+
+    againType() {
+        if (this.box_win.visible) {
+            this.addWinDmd(false);
+            this.reloadGame();
+        }else{
+            this.reloadGame();
+        }
     }
 }
 

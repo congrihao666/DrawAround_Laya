@@ -103,6 +103,59 @@ export class JsbBase {
     public exitGame(){
         
     }
+
+    /** (头条)录制开关,game(scene),type(0,1)*/
+    public videoPlay(game, type) {
+
+    }
+
+    /** (头条)录制视频分享,game(scene)*/
+    onShare(game, type) {
+
+    }
+
+    /** (头条)生成更多游戏按钮*/
+    public gameBtn() {
+
+    }
+
+    /** (头条)隐藏更多游戏按钮*/
+    public btnDestroy() {
+
+    }
+
+    /** (头条)生成4宫格游戏按钮*/
+    public gameBtns() {
+
+    }
+
+    /** (头条)隐藏4宫格游戏按钮*/
+    btnDestroys() {
+
+    }
+
+    /** (头条)是否显示分享,game(scene),Gate_number(关卡数)*/
+    showShare(game, Gate_number) {
+
+    } 
+    
+    /** 是否IOS*/
+    public isIos(){
+        return false;
+    }
+
+    /** 是不是胖子*/
+     public isFat(){
+
+    }
+    /**隐藏广告 */
+    public hideBannder(){
+        
+    }
+    /**显示广告 */
+    public showBannder(){
+        
+    }
 }
 
 
