@@ -4,7 +4,7 @@ import { VideoCom } from "../Component/VideoCom";
 export default class JsbTouTiao extends JsbBase {
 
 
-    public BannerId: string = "tlag64lsjj4g969k2f";
+    public BannerId: string = "2c4dh0j0oc9dh9a2n7";
 
     public RewardedVideoId: string = "1c0jag1fd3geb88400";
 
@@ -88,28 +88,26 @@ export default class JsbTouTiao extends JsbBase {
             this.windowHeight = windowHeight;
 
             var targetBannerAdWidth = 200;
-            console.log("openBanner -----------------  windowWidth = " + windowWidth + "  windowHeight = " + windowHeight);
-
+            if(targetBannerAdWidth > windowWidth){
+                targetBannerAdWidth = windowWidth - 40;
+            }
             let bannerAd = tt.createBannerAd({
                 adUnitId: this.BannerId,
                 style: {
-                    width: windowWidth,
+                    width: targetBannerAdWidth,
                     top: windowHeight - (targetBannerAdWidth / 16 * 9), // 根据系统约定尺寸计算出广告高度
+                    left: (windowWidth - targetBannerAdWidth) / 2
                 },
             });
-            console.log("openBanner -----------------" + (windowHeight - (targetBannerAdWidth / 16 * 9)));
-
             // // 尺寸调整时会触发回调
             // // 注意：如果在回调里再次调整尺寸，要确保不要触发死循环！！！
             bannerAd.onResize(size => {
-                console.log("ssssssssssssssssssssssssssss  ", size.width, size.height);
-
-                // 如果一开始设置的 banner 宽度超过了系统限制，可以在此处加以调整
                 if (targetBannerAdWidth != size.width) {
                     targetBannerAdWidth = size.width;
-                    bannerAd.style.top = windowHeight - (size.width / 16 * 9) + 56;
                     bannerAd.style.left = (windowWidth - size.width) / 2;
+                    bannerAd.style.top = windowHeight - (size.height + 20);
                 }
+                console.log("广告宽高---", size.width, size.height, 'left,top---',bannerAd.style.left, bannerAd.style.top);
             });
 
             bannerAd.onLoad(() => {
@@ -131,6 +129,8 @@ export default class JsbTouTiao extends JsbBase {
             })
 
             this.bannerAd = bannerAd;
+
+            console.log('this.bannerAd.style.width-----'+this.bannerAd.style.width,'this.bannerAd.style.height------'+this.bannerAd.style.height)
         }
     }
 

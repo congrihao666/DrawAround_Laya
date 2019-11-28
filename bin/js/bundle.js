@@ -14,7 +14,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "MainScene.scene";
+    GameConfig.startScene = "LoadView.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -968,12 +968,25 @@
                     this.isInitiative = true;
                 }
                 else {
-                    this.isClick = false;
-                    this.isClick = true;
-                    this.owner.skin = this.norSkin;
-                    this.recorder.stop();
-                    this.isOp = false;
-                    this.playType = true;
+                    if (this.curTimer >= 3 * 1000) {
+                        this.isClick = false;
+                        this.isClick = true;
+                        this.owner.skin = this.norSkin;
+                        this.recorder.stop();
+                        this.isOp = false;
+                        this.playType = true;
+                    }
+                    else {
+                        g_tipM.showTip("不足3秒,无法停止,3秒后自动停止!", 1 * 1000);
+                        setTimeout(() => {
+                            this.isClick = false;
+                            this.isClick = true;
+                            this.owner.skin = this.norSkin;
+                            this.recorder.stop();
+                            this.isOp = false;
+                            this.playType = true;
+                        }, 1000 * 3);
+                    }
                 }
             }
         }
@@ -1007,6 +1020,7 @@
                     },
                     fail(e) {
                         console.log('分享视频失败' + JSON.stringify(e));
+                        g_tipM.showTip("分享视频失败!", 1 * 1000);
                     }
                 });
             }
@@ -1024,7 +1038,7 @@
     class JsbTouTiao extends JsbBase {
         constructor() {
             super(...arguments);
-            this.BannerId = "tlag64lsjj4g969k2f";
+            this.BannerId = "2c4dh0j0oc9dh9a2n7";
             this.RewardedVideoId = "1c0jag1fd3geb88400";
             this.bannerAd = null;
             this.videoAd = null;
@@ -1085,22 +1099,24 @@
                 this.windowWidth = windowWidth;
                 this.windowHeight = windowHeight;
                 var targetBannerAdWidth = 200;
-                console.log("openBanner -----------------  windowWidth = " + windowWidth + "  windowHeight = " + windowHeight);
+                if (targetBannerAdWidth > windowWidth) {
+                    targetBannerAdWidth = windowWidth - 40;
+                }
                 let bannerAd = tt.createBannerAd({
                     adUnitId: this.BannerId,
                     style: {
-                        width: windowWidth,
+                        width: targetBannerAdWidth,
                         top: windowHeight - (targetBannerAdWidth / 16 * 9),
+                        left: (windowWidth - targetBannerAdWidth) / 2
                     },
                 });
-                console.log("openBanner -----------------" + (windowHeight - (targetBannerAdWidth / 16 * 9)));
                 bannerAd.onResize(size => {
-                    console.log("ssssssssssssssssssssssssssss  ", size.width, size.height);
                     if (targetBannerAdWidth != size.width) {
                         targetBannerAdWidth = size.width;
-                        bannerAd.style.top = windowHeight - (size.width / 16 * 9) + 56;
                         bannerAd.style.left = (windowWidth - size.width) / 2;
+                        bannerAd.style.top = windowHeight - (size.height + 20);
                     }
+                    console.log("广告宽高---", size.width, size.height, 'left,top---', bannerAd.style.left, bannerAd.style.top);
                 });
                 bannerAd.onLoad(() => {
                     console.log("banner 加载成功");
@@ -1119,6 +1135,7 @@
                     });
                 });
                 this.bannerAd = bannerAd;
+                console.log('this.bannerAd.style.width-----' + this.bannerAd.style.width, 'this.bannerAd.style.height------' + this.bannerAd.style.height);
             }
         }
         clearBanner() {
@@ -2724,6 +2741,7 @@
             this.btn_buy.on(Laya.Event.CLICK, this, this.buyOnClick);
             this.list_skin.renderHandler = new Laya.Handler(this, this.listOnRender);
             this.list_skin.mouseHandler = new Laya.Handler(this, this.listMouseHander);
+            g_evnetM.AddEvent("Advertisement", this, this.advBack);
         }
         listOnRender(cell, index) {
             let skinData = this.skinsData[index];

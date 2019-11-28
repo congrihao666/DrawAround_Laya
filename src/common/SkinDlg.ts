@@ -35,6 +35,8 @@ export default class SkinDlg extends ui.SkinDlgUI {
         this.btn_buy.on(Laya.Event.CLICK, this, this.buyOnClick);
         this.list_skin.renderHandler = new Laya.Handler(this, this.listOnRender);
         this.list_skin.mouseHandler = new Laya.Handler(this, this.listMouseHander);
+
+        g_evnetM.AddEvent("Advertisement", this, this.advBack);
     }
 
     listOnRender(cell: Laya.Box, index: number) {

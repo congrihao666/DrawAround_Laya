@@ -111,12 +111,25 @@ export class VideoCom extends Laya.Script {
                 });
                 this.isInitiative = true;
             } else {
-                this.isClick = false;
-                this.isClick = true;
-                this.owner.skin = this.norSkin;
-                this.recorder.stop();
-                this.isOp = false;
-                this.playType = true;
+                if (this.curTimer >= 3 * 1000) {
+                    this.isClick = false;
+                    this.isClick = true;
+                    this.owner.skin = this.norSkin;
+                    this.recorder.stop();
+                    this.isOp = false;
+                    this.playType = true;
+                } else {
+                    g_tipM.showTip("不足3秒,无法停止,3秒后自动停止!", 1 * 1000);
+                    setTimeout(() => {
+                        this.isClick = false;
+                        this.isClick = true;
+                        this.owner.skin = this.norSkin;
+                        this.recorder.stop();
+                        this.isOp = false;
+                        this.playType = true;
+                    }, 1000 * 3);
+                }
+
             }
         }
     }
@@ -154,6 +167,7 @@ export class VideoCom extends Laya.Script {
                 },
                 fail(e) {
                     console.log('分享视频失败' + JSON.stringify(e));
+                    g_tipM.showTip("分享视频失败!", 1 * 1000);
                 }
             })
         } catch (e) {
