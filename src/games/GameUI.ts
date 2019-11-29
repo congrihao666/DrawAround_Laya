@@ -216,6 +216,7 @@ export default class GameUI extends ui.MainSceneUI {
     }
 
     reloadGame() {
+        console.log("重新加载游戏")
         this.openBox(1);
         this.updateLvl();
         this.updatePrg(0);

@@ -36,9 +36,16 @@ export default class JsbOppoMiniGame extends JsbBase {
 
     public audio: any;
 
+    public is_auto_close_banner: boolean = true;
+
+    insertCnt: number = 8;
+    bannerCnt: number = 5;
+    insertCd: boolean = false;
+
     public openAdvert(type: AdvertType) {
         switch (type) {
             case AdvertType.OpenScreen: {
+                console.log("初始化");
                 this.openSplashAd();
                 break;
             }
@@ -57,7 +64,22 @@ export default class JsbOppoMiniGame extends JsbBase {
 
 
     public openSplashAd() {
+        this.initFlag();
         this.initOppoAd();
+    }
+
+    public initFlag() {
+        let day = new Date().getDate();
+        /**
+         * 使用天来判断    天数相同   直接使用本地保存的次数就行 不用另做处理
+         */
+        let localday = PubUtils.GetLocalData("curDay");
+        if (localday == null || localday == "" || day != localday) {
+            console.log("初始化广告次数参数");
+            PubUtils.SetLocalData("curDay", day);
+            PubUtils.SetLocalData("instertCount", this.insertCnt);
+            PubUtils.SetLocalData("bannerCount", this.bannerCnt);
+        }
     }
 
     public openRewardVideo() {
@@ -66,28 +88,25 @@ export default class JsbOppoMiniGame extends JsbBase {
 
     public getIntertCount(): number {
         let c = PubUtils.GetLocalData("instertCount");
-        if (c == null || c == "") {
-            c = 0;
-        }
-        return parseInt(c);
+        return +c||0;
     }
 
     /**
      * 获取是否可以展示插屏
      */
-    public getIsShowInstert(): number {
-        let day = new Date().getDate();
-        let count = 0;
-        let localday = PubUtils.GetLocalData("curDay");
-        if (localday == null || localday == "" || day != localday) {
-            PubUtils.SetLocalData("curDay", day);
-            PubUtils.SetLocalData("instertCount", 100);
-            count = 8;
-        } else {
-            count = this.getIntertCount();
-        }
-        return count;
-    }
+    // public getIsShowInstert(): number {
+    //     let day = new Date().getDate();
+    //     let count = 0;
+    //     let localday = PubUtils.GetLocalData("curDay");
+    //     if (localday == null || localday == "" || day != localday) {
+    //         PubUtils.SetLocalData("curDay", day);
+    //         PubUtils.SetLocalData("instertCount", 100);
+    //         count = 8;
+    //     } else {
+    //         count = this.getIntertCount();
+    //     }
+    //     return count;
+    // }
 
     public subInstertCount(): void {
         let c = this.getIntertCount();
@@ -133,7 +152,7 @@ export default class JsbOppoMiniGame extends JsbBase {
             );
 
             bannerAd.onShow(() => {
-                // console.log('banner 广告显示');
+                console.log('banner 广告显示');
                 this.BannerErrCount = 0;
             });
 
@@ -142,6 +161,11 @@ export default class JsbOppoMiniGame extends JsbBase {
                 // Laya.timer.once(1000 * 60, self, () => {
                 //     this.openBannerView();
                 // })
+                console.log("是否是用户自己关闭baner", this.is_auto_close_banner)
+                if (this.is_auto_close_banner) {
+                    this.subBannerCount();
+                }
+                this.is_auto_close_banner = true;
             });
 
             bannerAd.onError(function (err) {
@@ -149,16 +173,15 @@ export default class JsbOppoMiniGame extends JsbBase {
                 self.BannerErrCount++;
                 bannerAd.offError(null);
 
-                Laya.timer.once(1000 * 60, self, () => {
-                    self.openBannerView();
-                })
+                // Laya.timer.once(1000 * 60, self, () => {
+                //     self.openBannerView();
+                // })
 
             })
 
             // bannerAd.onError((err) => { console.log(err) });
-            bannerAd.show();
-
             this.bannerAd = bannerAd;
+            this.showBanner();
         }
     }
 
@@ -180,11 +203,34 @@ export default class JsbOppoMiniGame extends JsbBase {
     }
 
     hideBanner() {
+        console.log("隐藏banner广告")
+        this.is_auto_close_banner = false;
+        Laya.timer.once(1000, this, ()=> {
+            this.is_auto_close_banner = true;
+        })
         this.bannerAd.hide();
     }
     
     showBanner() {
-        this.bannerAd.show();
+        let count = this.getBannerCount();
+        if (count == 0) {
+            console.log("banner达到玩家关闭上限");
+            return;
+        }
+        this.bannerAd && this.bannerAd.show();
+    }
+
+    subBannerCount() {
+        let c = this.getBannerCount();
+        if (c == 0) return;
+        c--;
+        PubUtils.SetLocalData("bannerCount", c);
+    }
+
+    public getBannerCount(): number {
+        let c = PubUtils.GetLocalData("bannerCount");
+        console.log("banner剩余次数",c+",",+c);
+        return +c||0;
     }
 
     public loadRewardVide() {
@@ -290,12 +336,32 @@ export default class JsbOppoMiniGame extends JsbBase {
         // }
     }
 
+    //插屏广告一分钟只能有一次
+    isInsertCd() {
+        let bol = this.insertCd;
+        if (!this.insertCd) {
+            this.insertCd = true;
+            Laya.timer.once(60*1000, this, ()=> {
+                this.insertCd = false;
+            })
+        }
+        return bol;
+    }
+
     public showInstertView() {
         if (this.InsertErrCount >= this.ErrZCount) return console.log("加载超时-----loadInsert");
 
-        let count = this.getIsShowInstert();
+        let count = this.getIntertCount();
 
-        if (count == 0) return;
+        if (count == 0) {
+            console.log("插屏广告达到当日上限");
+            return;
+        }
+
+        if (this.isInsertCd()) {
+            console.log("插屏广告冷却中");
+            return;
+        }
 
         if (this.insertAd == null) {
             console.log("showInstarview 加载插屏");
@@ -317,6 +383,7 @@ export default class JsbOppoMiniGame extends JsbBase {
             insertAd.onShow(() => {
                 console.log('插屏广告展示');
                 self.InsertErrCount = 0;
+                this.subInstertCount();
                 self.clearInsert();
             });
 

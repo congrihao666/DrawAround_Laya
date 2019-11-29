@@ -398,10 +398,15 @@
             this.VoideErrCount = 0;
             this.InsertErrCount = 0;
             this.ErrZCount = 3;
+            this.is_auto_close_banner = true;
+            this.insertCnt = 8;
+            this.bannerCnt = 5;
+            this.insertCd = false;
         }
         openAdvert(type) {
             switch (type) {
                 case 8: {
+                    console.log("初始化");
                     this.openSplashAd();
                     break;
                 }
@@ -416,31 +421,25 @@
             }
         }
         openSplashAd() {
+            this.initFlag();
             this.initOppoAd();
+        }
+        initFlag() {
+            let day = new Date().getDate();
+            let localday = PubUtils.GetLocalData("curDay");
+            if (localday == null || localday == "" || day != localday) {
+                console.log("初始化广告次数参数");
+                PubUtils.SetLocalData("curDay", day);
+                PubUtils.SetLocalData("instertCount", this.insertCnt);
+                PubUtils.SetLocalData("bannerCount", this.bannerCnt);
+            }
         }
         openRewardVideo() {
             this.showRewardVideo();
         }
         getIntertCount() {
             let c = PubUtils.GetLocalData("instertCount");
-            if (c == null || c == "") {
-                c = 0;
-            }
-            return parseInt(c);
-        }
-        getIsShowInstert() {
-            let day = new Date().getDate();
-            let count = 0;
-            let localday = PubUtils.GetLocalData("curDay");
-            if (localday == null || localday == "" || day != localday) {
-                PubUtils.SetLocalData("curDay", day);
-                PubUtils.SetLocalData("instertCount", 100);
-                count = 8;
-            }
-            else {
-                count = this.getIntertCount();
-            }
-            return count;
+            return +c || 0;
         }
         subInstertCount() {
             let c = this.getIntertCount();
@@ -475,20 +474,23 @@
             if (this.bannerAd == null) {
                 let bannerAd = qg.createBannerAd({ posId: this.BannerId });
                 bannerAd.onShow(() => {
+                    console.log('banner 广告显示');
                     this.BannerErrCount = 0;
                 });
                 bannerAd.onHide(() => {
+                    console.log("是否是用户自己关闭baner", this.is_auto_close_banner);
+                    if (this.is_auto_close_banner) {
+                        this.subBannerCount();
+                    }
+                    this.is_auto_close_banner = true;
                 });
                 bannerAd.onError(function (err) {
                     console.log("banner 打开失败   " + JSON.stringify(err));
                     self.BannerErrCount++;
                     bannerAd.offError(null);
-                    Laya.timer.once(1000 * 60, self, () => {
-                        self.openBannerView();
-                    });
                 });
-                bannerAd.show();
                 this.bannerAd = bannerAd;
+                this.showBanner();
             }
         }
         clearBanner() {
@@ -503,10 +505,32 @@
             }
         }
         hideBanner() {
+            console.log("隐藏banner广告");
+            this.is_auto_close_banner = false;
+            Laya.timer.once(1000, this, () => {
+                this.is_auto_close_banner = true;
+            });
             this.bannerAd.hide();
         }
         showBanner() {
-            this.bannerAd.show();
+            let count = this.getBannerCount();
+            if (count == 0) {
+                console.log("banner达到玩家关闭上限");
+                return;
+            }
+            this.bannerAd && this.bannerAd.show();
+        }
+        subBannerCount() {
+            let c = this.getBannerCount();
+            if (c == 0)
+                return;
+            c--;
+            PubUtils.SetLocalData("bannerCount", c);
+        }
+        getBannerCount() {
+            let c = PubUtils.GetLocalData("bannerCount");
+            console.log("banner剩余次数", c + ",", +c);
+            return +c || 0;
         }
         loadRewardVide() {
             if (this.VoideErrCount >= this.ErrZCount)
@@ -571,12 +595,28 @@
         }
         loadInsert() {
         }
+        isInsertCd() {
+            let bol = this.insertCd;
+            if (!this.insertCd) {
+                this.insertCd = true;
+                Laya.timer.once(60 * 1000, this, () => {
+                    this.insertCd = false;
+                });
+            }
+            return bol;
+        }
         showInstertView() {
             if (this.InsertErrCount >= this.ErrZCount)
                 return console.log("加载超时-----loadInsert");
-            let count = this.getIsShowInstert();
-            if (count == 0)
+            let count = this.getIntertCount();
+            if (count == 0) {
+                console.log("插屏广告达到当日上限");
                 return;
+            }
+            if (this.isInsertCd()) {
+                console.log("插屏广告冷却中");
+                return;
+            }
             if (this.insertAd == null) {
                 console.log("showInstarview 加载插屏");
                 let self = this;
@@ -594,6 +634,7 @@
                 insertAd.onShow(() => {
                     console.log('插屏广告展示');
                     self.InsertErrCount = 0;
+                    this.subInstertCount();
                     self.clearInsert();
                 });
                 insertAd.onError((err) => {
@@ -2385,6 +2426,7 @@
             g_sceneM.startGame();
         }
         reloadGame() {
+            console.log("重新加载游戏");
             this.openBox(1);
             this.updateLvl();
             this.updatePrg(0);
@@ -2476,7 +2518,7 @@
         constructor() {
             this.gold = 0;
             this.nowLvl = 1;
-            this.totalLvl = 20;
+            this.totalLvl = 24;
             this.nowLvlTimes = 1;
             this.winGold = 20;
             this.ownedSkin = [0];
@@ -3742,7 +3784,7 @@
             Laya.MouseManager.multiTouchEnabled = false;
             g_evnetM.init();
             g_sceneM.initEvent();
-            PlatformManager.init(PlatformType.TTMinGame);
+            PlatformManager.init(PlatformType.None);
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

@@ -267,6 +267,44 @@
             "p7": "color16",
             "p8": "color16",
             "p9": "color16"
+		},
+        "lvl21": {
+            "p1": "color16",
+            "p2": "color16",
+            "p3": "color16",
+			"p4": "color16"
+        },
+        "lvl22": { 
+            "p1": "color4",
+            "p2": "color16",
+            "p3": "color4",
+            "p4": "color16",
+            "p5": "color4",
+            "p6": "color4",
+            "p7": "color4",
+            "p8": "color4",
+            "p9": "color4",
+			"p10": "color1"
+        },
+        "lvl23": {
+            "p1": "color16",
+            "p2": "color16",
+            "p3": "color1",
+            "p4": "color1",
+            "p5": "color16"
+        },
+        "lvl24": {
+            "p1": "color4",
+            "p2": "color6",
+            "p3": "color1",
+            "p4": "color4",
+            "p5": "color4",
+            "p6": "color4",
+            "p7": "color4",
+            "p8": "color6",
+            "p9": "color6",
+			"p10": "color1",
+			"p11": "color1"
         }
     },
     "colorType": {
