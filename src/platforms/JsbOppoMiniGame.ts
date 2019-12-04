@@ -348,17 +348,23 @@ export default class JsbOppoMiniGame extends JsbBase {
         return bol;
     }
 
+    insertNone() {
+        AndroidToJs.CallJs("no_insert_play_push", null);
+    }
+
     public showInstertView() {
         if (this.InsertErrCount >= this.ErrZCount) return console.log("加载超时-----loadInsert");
 
         let count = this.getIntertCount();
 
         if (count == 0) {
+            this.insertNone();
             console.log("插屏广告达到当日上限");
             return;
         }
 
         if (this.isInsertCd()) {
+            this.insertNone();
             console.log("插屏广告冷却中");
             return;
         }

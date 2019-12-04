@@ -10,6 +10,7 @@ import SkinDlg from "../common/SkinDlg";
 import SigninDlg from "../common/SigninDlg";
 import SkinUseDlg from "../common/SkinUseDlg";
 import TigColScript from "./TigColScript";
+import SudokuPushDlg from "../common/SudokuPushDlg";
 
 class SceneManager {
     static readonly Instance: SceneManager = new SceneManager;
@@ -36,6 +37,7 @@ class SceneManager {
     skinDlg: SkinDlg;
     signinDlg: SigninDlg;
     skinUseDlg: SkinUseDlg;
+    sudokuDlg: SudokuPushDlg;
 
     colorCylinders: Laya.Sprite3D; //颜料的父节点
     wayPointManager: Laya.Sprite3D; //每一关的控制点总精灵节点
@@ -54,6 +56,8 @@ class SceneManager {
     linePaths: Laya.Sprite3D; //路径父节点
     winEffects: Laya.ShuriKenParticle3D[] = []; //胜利时的粒子特效数组
 
+    playnum: number = 0;
+
 
     init() {        
         this.creatDlg();
@@ -69,6 +73,8 @@ class SceneManager {
         g_evnetM.AddEvent("play_music", this, this.playBGM);
         g_evnetM.AddEvent("stop_music", this, this.stopBGM);
         g_evnetM.AddEvent("shock_screen", this, this.shakeScreen);
+
+        g_evnetM.AddEvent("no_insert_play_push", this, this.checkIsPlayPush);
     }
 
     playBGM() {
@@ -119,6 +125,10 @@ class SceneManager {
         Laya.stage.addChild(this.skinUseDlg);
         this.skinUseDlg.zOrder = 230;
         this.openSkinUseDlg(false);
+
+        this.sudokuDlg = Laya.stage.addChild(new SudokuPushDlg) as SudokuPushDlg;
+        this.sudokuDlg.zOrder = 240;
+        this.openSudokuDlg(false);
     }
 
     openSet(isOpen: boolean) {
@@ -137,6 +147,16 @@ class SceneManager {
     openSkinUseDlg(isOpen: boolean) {
         this.skinUseDlg.updateSkin();
         this.skinUseDlg.visible = isOpen;
+    }
+
+    openSudokuDlg(isOpen: boolean) {
+        this.sudokuDlg.visible = isOpen;
+    }
+
+    checkIsPlayPush() {
+        if (this.playnum++ % 2 == 0) {
+            this.openSudokuDlg(true);
+        }
     }
 
     equipSkin(id: number) {

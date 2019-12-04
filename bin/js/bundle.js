@@ -605,15 +605,20 @@
             }
             return bol;
         }
+        insertNone() {
+            AndroidToJs.CallJs("no_insert_play_push", null);
+        }
         showInstertView() {
             if (this.InsertErrCount >= this.ErrZCount)
                 return console.log("加载超时-----loadInsert");
             let count = this.getIntertCount();
             if (count == 0) {
+                this.insertNone();
                 console.log("插屏广告达到当日上限");
                 return;
             }
             if (this.isInsertCd()) {
+                this.insertNone();
                 console.log("插屏广告冷却中");
                 return;
             }
@@ -891,6 +896,18 @@
         SkinUseDlgUI.uiView = { "type": "Dialog", "props": { "width": 750, "height": 1630 }, "compId": 2, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "img/img_black.png", "height": 1630, "alpha": 0.7 }, "compId": 27 }, { "type": "Image", "props": { "y": 580, "x": 375, "width": 612, "skin": "img/sz-di.png", "sizeGrid": "126,153,175,148", "height": 897, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 5 }, { "type": "Image", "props": { "y": 160, "x": 600, "var": "img_back", "skin": "img/sz-x.png" }, "compId": 6 }, { "type": "Image", "props": { "y": 795, "x": 220, "var": "btn_shiyong3", "skin": "skin/pfsy-anniu2.png" }, "compId": 12 }, { "type": "Image", "props": { "y": 321, "x": 114, "skin": "skin/pfsy-di1.png" }, "compId": 7 }, { "type": "Image", "props": { "y": 496, "x": 231, "var": "img_skin1", "skin": "img/start-z.png", "scaleY": 0.8, "scaleX": 0.8, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 9 }, { "type": "Button", "props": { "y": 706, "x": 146, "var": "btn_shiyong1", "stateNum": 1, "skin": "skin/pfsy-anniu.png" }, "compId": 10 }, { "type": "Image", "props": { "y": 321, "x": 400, "skin": "skin/pfsy-di2.png" }, "compId": 19 }, { "type": "Image", "props": { "y": 496, "x": 517, "var": "img_skin2", "skin": "img/start-z.png", "scaleY": 0.8, "scaleX": 0.8, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 20 }, { "type": "Button", "props": { "y": 706, "x": 432, "var": "btn_shiyong2", "stateNum": 1, "skin": "skin/pfsy-anniu.png" }, "compId": 21 }, { "type": "CheckBox", "props": { "y": 938, "x": 264, "var": "check_not", "skin": "skin/checkbox.png", "scaleY": 3, "scaleX": 3, "labelFont": "SimHei", "labelColors": "#123456", "label": "  不再弹出" }, "compId": 25 }, { "type": "Image", "props": { "y": 160, "x": 254, "skin": "skin/pfsy-pfsy.png" }, "compId": 26 }], "loadList": ["img/img_black.png", "img/sz-di.png", "img/sz-x.png", "skin/pfsy-anniu2.png", "skin/pfsy-di1.png", "img/start-z.png", "skin/pfsy-anniu.png", "skin/pfsy-di2.png", "skin/checkbox.png", "skin/pfsy-pfsy.png"], "loadList3D": [] };
         ui.SkinUseDlgUI = SkinUseDlgUI;
         REG("ui.SkinUseDlgUI", SkinUseDlgUI);
+        class SudokuPushUI extends Laya.Dialog {
+            constructor() {
+                super();
+            }
+            createChildren() {
+                super.createChildren();
+                this.createView(SudokuPushUI.uiView);
+            }
+        }
+        SudokuPushUI.uiView = { "type": "Dialog", "props": { "width": 750, "height": 1630 }, "compId": 2, "child": [{ "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "height": 2000, "bgColor": "#000000", "alpha": 0.5 }, "compId": 3 }, { "type": "Image", "props": { "y": 577, "x": 375, "width": 564, "skin": "push/img_bg.png", "sizeGrid": "21,21,19,19", "height": 705, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 15 }, { "type": "Sprite", "props": { "width": 750, "var": "push_node", "height": 1280 }, "compId": 4, "child": [{ "type": "Image", "props": { "y": 350, "x": 195, "skin": "push/img_1.png", "name": "push_item_1", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 7, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 8 }] }, { "type": "Image", "props": { "y": 350, "x": 375, "skin": "push/img_2.png", "name": "push_item_2", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 11, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 12 }] }, { "type": "Image", "props": { "y": 350, "x": 555, "skin": "push/img_3.png", "name": "push_item_3", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 13, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 14 }] }, { "type": "Image", "props": { "y": 577, "x": 195, "skin": "push/img_4.png", "name": "push_item_4", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 16, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 19 }] }, { "type": "Image", "props": { "y": 577, "x": 375, "skin": "push/img_5.png", "name": "push_item_5", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 17, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 20 }] }, { "type": "Image", "props": { "y": 577, "x": 555, "skin": "push/img_6.png", "name": "push_item_6", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 21 }] }, { "type": "Image", "props": { "y": 804, "x": 195, "skin": "push/img_7.png", "name": "push_item_7", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 22, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 25 }] }, { "type": "Image", "props": { "y": 804, "x": 375, "skin": "push/img_8.png", "name": "push_item_8", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 23, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 26 }] }, { "type": "Image", "props": { "y": 804, "x": 555, "skin": "push/img_9.png", "name": "push_item_9", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "skin": "push/img_hdcq.png", "name": "icon" }, "compId": 27 }] }] }, { "type": "Image", "props": { "y": 962, "x": 215, "var": "next_but_tap", "skin": "push/img_next.png" }, "compId": 28 }, { "type": "Image", "props": { "y": 169, "x": 196, "skin": "push/img_hytj.png" }, "compId": 29 }], "loadList": ["push/img_bg.png", "push/img_1.png", "push/img_hdcq.png", "push/img_2.png", "push/img_3.png", "push/img_4.png", "push/img_5.png", "push/img_6.png", "push/img_7.png", "push/img_8.png", "push/img_9.png", "push/img_next.png", "push/img_hytj.png"], "loadList3D": [] };
+        ui.SudokuPushUI = SudokuPushUI;
+        REG("ui.SudokuPushUI", SudokuPushUI);
         class TipViewUI extends Laya.View {
             constructor() {
                 super();
@@ -3098,6 +3115,97 @@
         }
     }
 
+    class SudokuPushDlg extends ui.SudokuPushUI {
+        constructor() {
+            super();
+            this.init();
+        }
+        init() {
+            g_sudokM.getSudokuPushConfig(new Laya.Handler(this, this.initBack));
+            this.push_data = new Array();
+            this.next_but_tap.on(Laya.Event.CLICK, this, this.onCloseView);
+        }
+        initBack() {
+            for (var i = 0; i < g_sudokM.sudoku_push_data.length; i++) {
+                var info = g_sudokM.sudoku_push_data[i];
+                this.push_data.push(info);
+            }
+            this.getPushBut();
+        }
+        getPushBut() {
+            for (var i = 1; i <= 9; i++) {
+                var name = "push_item_" + i;
+                var but = this.push_node.getChildByName(name);
+                var icon = but.getChildByName("icon");
+                if (this.push_data.length > 0) {
+                    but.active = true;
+                    var index = Math.floor(Math.random() * this.push_data.length);
+                    var info = this.push_data[index];
+                    this.push_data.splice(index, 1);
+                    icon.skin = info.icon;
+                    but["rpk_name"] = info.rpk;
+                    but.on(Laya.Event.CLICK, this, this.onPushButTap);
+                }
+                else {
+                    but.active = false;
+                }
+            }
+        }
+        onPushButTap(event) {
+            var rpkname = event.target["rpk_name"];
+            console.log("跳转小游戏", rpkname);
+            PlatformManager.Jsb.openGame(rpkname);
+        }
+        onCloseView() {
+            g_sceneM.openSudokuDlg(false);
+        }
+    }
+    class SudokuPushManager {
+        constructor() {
+            this.base_url = "https://kuaizhiyou.com.cn/fenfa/";
+            this.icon_url = "https://kuaizhiyou.com.cn/fenfa/icon/";
+            this.push_id = "20";
+            this.lunbo_id = "20";
+            this.sudoku_push_data = new Array();
+            this.isSudokeAcq = false;
+        }
+        getSudokuPushConfig(callBack) {
+            let url = this.base_url + "nine/fenfajiugong.json";
+            PubUtils.GetNetJson(url, (res) => {
+                var data = res;
+                if (data)
+                    this.isSudokeAcq = true;
+                for (var i = 0; i < data.length; i++) {
+                    var id = data[i].id;
+                    if (id == this.lunbo_id) {
+                        this.getSudokuPushData(data[i]);
+                        callBack.run();
+                        break;
+                    }
+                }
+            });
+        }
+        getSudokuPushData(data) {
+            var num = data["jiugong_num"];
+            for (var i = 1; i <= num; i++) {
+                var iconkey = "jiugong" + i + "_icon";
+                var rpkkey = "jiugong" + i + "_apkname";
+                var icon = data[iconkey];
+                var rpk = data[rpkkey];
+                if (icon) {
+                    var iconurl = this.icon_url + icon + ".png";
+                    var rpkname = rpk;
+                    var item = new Object();
+                    item.icon = iconurl;
+                    item.rpk = rpkname;
+                    this.sudoku_push_data.push(item);
+                }
+            }
+        }
+    }
+    SudokuPushManager.Instance = new SudokuPushManager;
+    let g_sudokM = SudokuPushManager.Instance;
+
     class SceneManager {
         constructor() {
             this.isDoubleStart = false;
@@ -3114,6 +3222,7 @@
             this.initCyls = {};
             this.obsColor = new Laya.Vector4(0, 0.2, 1, 1);
             this.winEffects = [];
+            this.playnum = 0;
         }
         init() {
             this.creatDlg();
@@ -3128,6 +3237,7 @@
             g_evnetM.AddEvent("play_music", this, this.playBGM);
             g_evnetM.AddEvent("stop_music", this, this.stopBGM);
             g_evnetM.AddEvent("shock_screen", this, this.shakeScreen);
+            g_evnetM.AddEvent("no_insert_play_push", this, this.checkIsPlayPush);
         }
         playBGM() {
             PlatformManager.Jsb.playMusic(g_constD.BGM, 0);
@@ -3171,6 +3281,9 @@
             Laya.stage.addChild(this.skinUseDlg);
             this.skinUseDlg.zOrder = 230;
             this.openSkinUseDlg(false);
+            this.sudokuDlg = Laya.stage.addChild(new SudokuPushDlg);
+            this.sudokuDlg.zOrder = 240;
+            this.openSudokuDlg(false);
         }
         openSet(isOpen) {
             this.setsDlg.visible = isOpen;
@@ -3186,6 +3299,14 @@
         openSkinUseDlg(isOpen) {
             this.skinUseDlg.updateSkin();
             this.skinUseDlg.visible = isOpen;
+        }
+        openSudokuDlg(isOpen) {
+            this.sudokuDlg.visible = isOpen;
+        }
+        checkIsPlayPush() {
+            if (this.playnum++ % 2 == 0) {
+                this.openSudokuDlg(true);
+            }
         }
         equipSkin(id) {
             let src = "game/pen_" + id + "/Conventional/pen_" + id + ".lh";
@@ -3784,7 +3905,7 @@
             Laya.MouseManager.multiTouchEnabled = false;
             g_evnetM.init();
             g_sceneM.initEvent();
-            PlatformManager.init(PlatformType.None);
+            PlatformManager.init(PlatformType.OppoMinGame);
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {
