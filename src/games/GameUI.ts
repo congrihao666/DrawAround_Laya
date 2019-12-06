@@ -31,6 +31,7 @@ export default class GameUI extends ui.MainSceneUI {
 
     openBox(type: number, isopen: boolean = true) {
         Laya.timer.clear(this, this.updateFontNum);
+        
         this.box_lose.visible = this.box_main.visible = this.box_win.visible = false;
         if (!isopen) return;
         if (type == 1) {
@@ -88,7 +89,7 @@ export default class GameUI extends ui.MainSceneUI {
 
         this.btn_share.on(Laya.Event.CLICK, this, this.videoShare);
         this.again.on(Laya.Event.CLICK, this, this.againType);
-        this.TTBtnPush.on(Laya.Event.CLICK, this, this.btnPush);
+        this.tt_btnPush.on(Laya.Event.CLICK, this, this.btnPush);
 
         if (PlatformManager.platform != PlatformType.TTMinGame) {
             this.btn_camera.visible = false;
@@ -96,7 +97,6 @@ export default class GameUI extends ui.MainSceneUI {
             this.btn_camera.visible = true;
             this.btn_camera.addComponent(VideoCom);
             if (PlatformManager.Jsb.isIos()) return;
-            this.TTBtnPush.visible = true;
             PlatformManager.Jsb.ttPushShake(this);
         }
     }
@@ -245,6 +245,13 @@ export default class GameUI extends ui.MainSceneUI {
         this.openBox(3, false);
         g_sceneM.destroyPart();
         g_sceneM.continueGame();
+
+        if (PlatformManager.platform == PlatformType.TTMinGame && this.box_lose.visible == false) {
+            this.bg_push.visible = false;
+            if (PlatformManager.Jsb.isIos())
+                return;
+            PlatformManager.Jsb.btnDestroys();
+        }
     }
 
     updateGold() {

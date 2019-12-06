@@ -490,27 +490,30 @@ export default class JsbTouTiao extends JsbBase {
 
     /** 头条互推轮播*/
     ttPushShake(game) {
-        game.TTBtnIcon.skin = `res/push/${pushIcon[this.pushNum]}.png`;
-        this.pushNum++;
-        if(this.pushNum > 4)this.pushNum = 0;
-        this.tween_push(game);
-        setTimeout(() => {
-            this.ttPushShake(game);
-        }, 1000 * 4.8)
+        if (typeof tt.showMoreGamesModal == "function") {
+            game.tt_btnPush.visible = true;
+            game.tt_iconPush.skin = `res/push/${pushIcon[this.pushNum]}.png`;
+            this.pushNum++;
+            if (this.pushNum > 4) this.pushNum = 0;
+            this.tween_push(game);
+            setTimeout(() => {
+                this.ttPushShake(game);
+            }, 1000 * 4.8)
+        }
     }
     /** 头条互推轮播缓动序列*/
     tween_push(game){
         this.tweenNum++;
         if(this.tweenNum > 4)return this.tweenNum = 0;
-        Laya.Tween.to(game.TTBtnPush,{ rotation: 30 }, 200, null, Laya.Handler.create(this,this.tween_1,[game]));
+        Laya.Tween.to(game.tt_btnPush,{ rotation: 30 }, 200, null, Laya.Handler.create(this,this.tween_1,[game]));
     }
     tween_1(game){
-        Laya.Tween.to(game.TTBtnPush,{ rotation: 0 }, 200, null, Laya.Handler.create(this,this.tween_2,[game]));
+        Laya.Tween.to(game.tt_btnPush,{ rotation: 0 }, 200, null, Laya.Handler.create(this,this.tween_2,[game]));
     }
     tween_2(game){
-        Laya.Tween.to(game.TTBtnPush,{ rotation: -30 }, 200, null, Laya.Handler.create(this,this.tween_3,[game]), 400);
+        Laya.Tween.to(game.tt_btnPush,{ rotation: -30 }, 200, null, Laya.Handler.create(this,this.tween_3,[game]), 400);
     }
     tween_3(game){
-        Laya.Tween.to(game.TTBtnPush,{ rotation: 0 }, 200, null, Laya.Handler.create(this,this.tween_push,[game]));
+        Laya.Tween.to(game.tt_btnPush,{ rotation: 0 }, 200, null, Laya.Handler.create(this,this.tween_push,[game]));
     }
 }

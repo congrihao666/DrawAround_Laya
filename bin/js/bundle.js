@@ -14,7 +14,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "LoadView.scene";
+    GameConfig.startScene = "MainScene.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -96,6 +96,10 @@
         hideBannder() {
         }
         showBannder() {
+        }
+        ttPushShake(view) {
+        }
+        TTnavigateToMiniGame() {
         }
     }
 
@@ -833,7 +837,7 @@
                 this.createView(MainSceneUI.uiView);
             }
         }
-        MainSceneUI.uiView = { "type": "Scene", "props": { "width": 750, "positionVariance_0": 100, "maxPartices": 100, "height": 1630 }, "compId": 1, "child": [{ "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_mouse", "height": 1630 }, "compId": 21 }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_main", "height": 1630 }, "compId": 112, "child": [{ "type": "Image", "props": { "y": 228, "x": 96, "skin": "img/logo.png" }, "compId": 164 }, { "type": "Image", "props": { "y": 750, "x": 220, "var": "btn_doubleStart", "skin": "img/zj-anniu.png" }, "compId": 156 }, { "type": "Image", "props": { "y": 900, "x": 220, "var": "btn_start", "skin": "img/zj-anniu1.png" }, "compId": 157, "child": [{ "type": "Image", "props": { "y": 42, "x": 72, "skin": "img/zj-anniu2.png" }, "compId": 186 }] }, { "type": "Image", "props": { "y": 536, "x": 3, "skin": "img/zj-di.png" }, "compId": 162, "child": [{ "type": "Image", "props": { "y": 11, "x": 15, "var": "img_signin", "skin": "img/zj-qd.png" }, "compId": 160 }] }, { "type": "Image", "props": { "y": 661, "x": 3, "skin": "img/zj-di.png" }, "compId": 163, "child": [{ "type": "Image", "props": { "y": 4, "x": 18, "var": "img_skin", "skin": "img/zj-pf.png" }, "compId": 161 }] }] }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_win", "height": 1630 }, "compId": 128, "child": [{ "type": "Image", "props": { "y": 269, "x": 111, "skin": "img/sl-sl.png" }, "compId": 170 }, { "type": "Image", "props": { "y": 420, "x": 192, "skin": "img/sl-jl1.png" }, "compId": 167, "child": [{ "type": "Image", "props": { "y": 48, "x": 50, "skin": "img/sl-jl2.png" }, "compId": 168 }, { "type": "Image", "props": { "y": 280, "x": 122, "skin": "img/start-z.png" }, "compId": 169 }, { "type": "Label", "props": { "y": 276.5, "x": 184, "width": 129, "var": "label_getdmd", "valign": "middle", "text": "20", "height": 50, "fontSize": 50, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "left" }, "compId": 173 }] }, { "type": "Image", "props": { "y": 820, "x": 220, "var": "btn_wubeilingqu", "skin": "img/sl-lq.png" }, "compId": 165 }, { "type": "Image", "props": { "y": 980, "x": 220, "var": "btn_zhijielingqu", "skin": "img/zj-anniu1.png" }, "compId": 166, "child": [{ "type": "Image", "props": { "y": 46, "x": 83, "skin": "img/zjlq.png" }, "compId": 185 }] }] }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_lose", "height": 1630 }, "compId": 129, "child": [{ "type": "Image", "props": { "y": 284, "x": 110.5, "skin": "img/sb-sb.png" }, "compId": 174 }, { "type": "Image", "props": { "y": 420, "x": 210, "skin": "img/sb-djs.png" }, "compId": 175 }, { "type": "Image", "props": { "y": 820, "x": 220.5, "var": "btn_jixuyouxi", "skin": "img/sb-jx.png" }, "compId": 176 }, { "type": "Image", "props": { "y": 980, "x": 220, "var": "btn_fanhui", "skin": "img/zj-anniu1.png" }, "compId": 177, "child": [{ "type": "Image", "props": { "y": 47, "x": 120, "skin": "img/sl-fh.png" }, "compId": 184 }] }, { "type": "FontClip", "props": { "y": 590, "x": 375, "var": "font_failCnt", "value": "10", "skin": "img/1234567890.png", "sheet": "1234567890", "scaleY": 3.2, "scaleX": 3.2, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 183 }] }, { "type": "Image", "props": { "y": 135, "x": 535, "width": 211, "var": "img_dmd", "skin": "img/start-zdi.png", "sizeGrid": "0,30,0,29", "height": 59 }, "compId": 121, "child": [{ "type": "Image", "props": { "y": 5, "x": 13, "skin": "img/start-z.png" }, "compId": 122 }, { "type": "Label", "props": { "y": 12, "x": 75, "width": 127, "var": "label_dmd", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 125 }] }, { "type": "Box", "props": { "y": 138.5, "x": 25, "var": "box_set" }, "compId": 179, "child": [{ "type": "Image", "props": { "skin": "img/zj-shezhi.png" }, "compId": 178 }] }, { "type": "Box", "props": { "y": 90, "x": 235, "var": "box_lvl" }, "compId": 152, "child": [{ "type": "ProgressBar", "props": { "var": "prg_pro", "skin": "img/start-jdt.png", "sizeGrid": "20,0,20,0,1" }, "compId": 180 }, { "type": "Label", "props": { "y": 8, "x": 0, "width": 55, "var": "label_p1", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 181 }, { "type": "Label", "props": { "y": 8, "x": 220, "width": 55, "var": "label_p2", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 182 }] }, { "type": "Image", "props": { "y": 400, "x": 0, "visible": false, "var": "btn_camera", "skin": "img/img_camera.png" }, "compId": 187 }, { "type": "Image", "props": { "x": 48, "visible": false, "var": "bg_push", "top": 1300, "skin": "push/push_bg_img.png", "scaleY": 1.4, "scaleX": 1.4 }, "compId": 188 }, { "type": "Sprite", "props": { "y": 130, "x": 104, "width": 542, "visible": false, "var": "shareBox" }, "compId": 189, "child": [{ "type": "Image", "props": { "y": 297, "width": 542, "skin": "push/img_bg_1.png", "sizeGrid": "20,20,20,20", "height": 686 }, "compId": 190, "child": [{ "type": "Label", "props": { "y": 603, "x": 211, "var": "again", "underline": true, "text": "再来一次", "fontSize": 30, "color": "#fff", "bold": true }, "compId": 191 }, { "type": "Image", "props": { "y": 463, "x": 147, "var": "btn_share", "skin": "push/img_share.png" }, "compId": 192 }, { "type": "Label", "props": { "y": 223, "x": 40, "text": "将本次精彩操作分享给朋友吧!", "fontSize": 34, "color": "#fff", "bold": true }, "compId": 197 }, { "type": "Label", "props": { "y": 33, "x": 169, "text": "提示", "fontSize": 100, "color": "#ffd40b", "bold": true }, "compId": 198 }] }] }], "loadList": ["img/logo.png", "img/zj-anniu.png", "img/zj-anniu1.png", "img/zj-anniu2.png", "img/zj-di.png", "img/zj-qd.png", "img/zj-pf.png", "img/sl-sl.png", "img/sl-jl1.png", "img/sl-jl2.png", "img/start-z.png", "img/sl-lq.png", "img/zjlq.png", "img/sb-sb.png", "img/sb-djs.png", "img/sb-jx.png", "img/sl-fh.png", "img/1234567890.png", "img/start-zdi.png", "img/zj-shezhi.png", "img/start-jdt.png", "img/img_camera.png", "push/push_bg_img.png", "push/img_bg_1.png", "push/img_share.png"], "loadList3D": [] };
+        MainSceneUI.uiView = { "type": "Scene", "props": { "width": 750, "positionVariance_0": 100, "maxPartices": 100, "height": 1630 }, "compId": 1, "child": [{ "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_mouse", "height": 1630 }, "compId": 21 }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_main", "height": 1630 }, "compId": 112, "child": [{ "type": "Image", "props": { "y": 228, "x": 96, "skin": "img/logo.png" }, "compId": 164 }, { "type": "Image", "props": { "y": 750, "x": 220, "var": "btn_doubleStart", "skin": "img/zj-anniu.png" }, "compId": 156 }, { "type": "Image", "props": { "y": 900, "x": 220, "var": "btn_start", "skin": "img/zj-anniu1.png" }, "compId": 157, "child": [{ "type": "Image", "props": { "y": 42, "x": 72, "skin": "img/zj-anniu2.png" }, "compId": 186 }] }, { "type": "Image", "props": { "y": 536, "x": 3, "skin": "img/zj-di.png" }, "compId": 162, "child": [{ "type": "Image", "props": { "y": 11, "x": 15, "var": "img_signin", "skin": "img/zj-qd.png" }, "compId": 160 }] }, { "type": "Image", "props": { "y": 661, "x": 3, "skin": "img/zj-di.png" }, "compId": 163, "child": [{ "type": "Image", "props": { "y": 4, "x": 18, "var": "img_skin", "skin": "img/zj-pf.png" }, "compId": 161 }] }] }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_win", "height": 1630 }, "compId": 128, "child": [{ "type": "Image", "props": { "y": 269, "x": 111, "skin": "img/sl-sl.png" }, "compId": 170 }, { "type": "Image", "props": { "y": 420, "x": 192, "skin": "img/sl-jl1.png" }, "compId": 167, "child": [{ "type": "Image", "props": { "y": 48, "x": 50, "skin": "img/sl-jl2.png" }, "compId": 168 }, { "type": "Image", "props": { "y": 280, "x": 122, "skin": "img/start-z.png" }, "compId": 169 }, { "type": "Label", "props": { "y": 276.5, "x": 184, "width": 129, "var": "label_getdmd", "valign": "middle", "text": "20", "height": 50, "fontSize": 50, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "left" }, "compId": 173 }] }, { "type": "Image", "props": { "y": 820, "x": 220, "var": "btn_wubeilingqu", "skin": "img/sl-lq.png" }, "compId": 165 }, { "type": "Image", "props": { "y": 980, "x": 220, "var": "btn_zhijielingqu", "skin": "img/zj-anniu1.png" }, "compId": 166, "child": [{ "type": "Image", "props": { "y": 46, "x": 83, "skin": "img/zjlq.png" }, "compId": 185 }] }] }, { "type": "Box", "props": { "y": 0, "x": 0, "width": 750, "var": "box_lose", "height": 1630 }, "compId": 129, "child": [{ "type": "Image", "props": { "y": 284, "x": 110.5, "skin": "img/sb-sb.png" }, "compId": 174 }, { "type": "Image", "props": { "y": 420, "x": 210, "skin": "img/sb-djs.png" }, "compId": 175 }, { "type": "Image", "props": { "y": 820, "x": 220.5, "var": "btn_jixuyouxi", "skin": "img/sb-jx.png" }, "compId": 176 }, { "type": "Image", "props": { "y": 980, "x": 220, "var": "btn_fanhui", "skin": "img/zj-anniu1.png" }, "compId": 177, "child": [{ "type": "Image", "props": { "y": 47, "x": 120, "skin": "img/sl-fh.png" }, "compId": 184 }] }, { "type": "FontClip", "props": { "y": 590, "x": 375, "var": "font_failCnt", "value": "10", "skin": "img/1234567890.png", "sheet": "1234567890", "scaleY": 3.2, "scaleX": 3.2, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 183 }] }, { "type": "Image", "props": { "y": 135, "x": 535, "width": 211, "var": "img_dmd", "skin": "img/start-zdi.png", "sizeGrid": "0,30,0,29", "height": 59 }, "compId": 121, "child": [{ "type": "Image", "props": { "y": 5, "x": 13, "skin": "img/start-z.png" }, "compId": 122 }, { "type": "Label", "props": { "y": 12, "x": 75, "width": 127, "var": "label_dmd", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 125 }] }, { "type": "Box", "props": { "y": 138.5, "x": 25, "var": "box_set" }, "compId": 179, "child": [{ "type": "Image", "props": { "skin": "img/zj-shezhi.png" }, "compId": 178 }] }, { "type": "Box", "props": { "y": 90, "x": 235, "var": "box_lvl" }, "compId": 152, "child": [{ "type": "ProgressBar", "props": { "var": "prg_pro", "skin": "img/start-jdt.png", "sizeGrid": "20,0,20,0,1" }, "compId": 180 }, { "type": "Label", "props": { "y": 8, "x": 0, "width": 55, "var": "label_p1", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 181 }, { "type": "Label", "props": { "y": 8, "x": 220, "width": 55, "var": "label_p2", "valign": "middle", "text": "0", "height": 36, "fontSize": 36, "font": "SimHei", "color": "#ffffff", "bold": true, "align": "center" }, "compId": 182 }] }, { "type": "Image", "props": { "y": 400, "x": 0, "visible": false, "var": "btn_camera", "skin": "img/img_camera.png" }, "compId": 187 }, { "type": "Image", "props": { "x": 48, "visible": false, "var": "bg_push", "top": 1300, "skin": "push/push_bg_img.png", "scaleY": 1.4, "scaleX": 1.4 }, "compId": 188 }, { "type": "Sprite", "props": { "y": 130, "x": 104, "width": 542, "visible": false, "var": "shareBox" }, "compId": 189, "child": [{ "type": "Image", "props": { "y": 297, "width": 542, "skin": "push/img_bg_1.png", "sizeGrid": "20,20,20,20", "height": 686 }, "compId": 190, "child": [{ "type": "Label", "props": { "y": 603, "x": 211, "var": "again", "underline": true, "text": "再来一次", "fontSize": 30, "color": "#fff", "bold": true }, "compId": 191 }, { "type": "Image", "props": { "y": 463, "x": 147, "var": "btn_share", "skin": "push/img_share.png" }, "compId": 192 }, { "type": "Label", "props": { "y": 223, "x": 40, "text": "将本次精彩操作分享给朋友吧!", "fontSize": 34, "color": "#fff", "bold": true }, "compId": 197 }, { "type": "Label", "props": { "y": 33, "x": 169, "text": "提示", "fontSize": 100, "color": "#ffd40b", "bold": true }, "compId": 198 }] }] }, { "type": "Image", "props": { "y": 618, "x": 682, "visible": false, "var": "tt_btnPush", "skin": "push/bg_push.png", "right": 20, "pivotY": 68, "pivotX": 48 }, "compId": 199, "child": [{ "type": "Image", "props": { "y": 11, "x": 7, "var": "tt_iconPush", "skin": "push/fklfsicon.png" }, "compId": 200 }, { "type": "Image", "props": { "y": -12, "skin": "push/mark.png" }, "compId": 201 }] }], "loadList": ["img/logo.png", "img/zj-anniu.png", "img/zj-anniu1.png", "img/zj-anniu2.png", "img/zj-di.png", "img/zj-qd.png", "img/zj-pf.png", "img/sl-sl.png", "img/sl-jl1.png", "img/sl-jl2.png", "img/start-z.png", "img/sl-lq.png", "img/zjlq.png", "img/sb-sb.png", "img/sb-djs.png", "img/sb-jx.png", "img/sl-fh.png", "img/1234567890.png", "img/start-zdi.png", "img/zj-shezhi.png", "img/start-jdt.png", "img/img_camera.png", "push/push_bg_img.png", "push/img_bg_1.png", "push/img_share.png", "push/bg_push.png", "push/fklfsicon.png", "push/mark.png"], "loadList3D": [] };
         ui.MainSceneUI = MainSceneUI;
         REG("ui.MainSceneUI", MainSceneUI);
         class RecommendDlgUI extends Laya.Dialog {
@@ -1014,7 +1018,6 @@
                     });
                     this.isOp = false;
                 }
-                this.isRecord = !this.isRecord;
             }
             else {
                 if (this.playType) {
@@ -1047,6 +1050,7 @@
                     }
                 }
             }
+            this.isRecord = !this.isRecord;
         }
         onUpdate() {
             if (this.isRecord) {
@@ -1093,6 +1097,7 @@
         }
     }
 
+    const pushIcon = ['fklfsicon', 'qqtkicon', 'bzklicon', 'cjjyicon', 'qqbwticon'];
     class JsbTouTiao extends JsbBase {
         constructor() {
             super(...arguments);
@@ -1109,6 +1114,8 @@
             this.btnc = null;
             this.btnd = null;
             this.share_demand = 1;
+            this.pushNum = 0;
+            this.tweenNum = 0;
         }
         openAdvert(type) {
             switch (type) {
@@ -1368,7 +1375,7 @@
                 let id = "ttf3f0854d6cda1ee2";
                 this.btna = tt.createMoreGamesButton({
                     type: "image",
-                    image: "res/push/qqbwticon.png",
+                    image: "res/push/fklfsicon.png",
                     style: {
                         left: 22,
                         top: this.windowHeight - 100,
@@ -1393,7 +1400,7 @@
                 });
                 this.btnb = tt.createMoreGamesButton({
                     type: "image",
-                    image: "res/push/ggphqicon.png",
+                    image: "res/push/qqtkicon.png",
                     style: {
                         left: 94,
                         top: this.windowHeight - 100,
@@ -1443,7 +1450,7 @@
                 });
                 this.btnd = tt.createMoreGamesButton({
                     type: "image",
-                    image: "res/push/hdcqdzzicon.png",
+                    image: "res/push/cjjyicon.png",
                     style: {
                         left: 240,
                         top: this.windowHeight - 100,
@@ -1484,6 +1491,52 @@
         }
         isFat() {
             return (this.windowHeight / this.windowWidth) < 1.9;
+        }
+        TTnavigateToMiniGame() {
+            if (this.isIos())
+                return;
+            tt.showMoreGamesModal({
+                appLaunchOptions: [
+                    {
+                        appId: 'tt68a61e1bf78cb645',
+                        query: "foo=bar&baz=qux"
+                    }
+                ],
+                success(res) {
+                    console.log('success', res.errMsg);
+                },
+                fail(res) {
+                    console.log('fail', res.errMsg);
+                }
+            });
+        }
+        ttPushShake(game) {
+            if (typeof tt.showMoreGamesModal == "function") {
+                game.tt_btnPush.visible = true;
+                game.tt_iconPush.skin = `res/push/${pushIcon[this.pushNum]}.png`;
+                this.pushNum++;
+                if (this.pushNum > 4)
+                    this.pushNum = 0;
+                this.tween_push(game);
+                setTimeout(() => {
+                    this.ttPushShake(game);
+                }, 1000 * 4.8);
+            }
+        }
+        tween_push(game) {
+            this.tweenNum++;
+            if (this.tweenNum > 4)
+                return this.tweenNum = 0;
+            Laya.Tween.to(game.tt_btnPush, { rotation: 30 }, 200, null, Laya.Handler.create(this, this.tween_1, [game]));
+        }
+        tween_1(game) {
+            Laya.Tween.to(game.tt_btnPush, { rotation: 0 }, 200, null, Laya.Handler.create(this, this.tween_2, [game]));
+        }
+        tween_2(game) {
+            Laya.Tween.to(game.tt_btnPush, { rotation: -30 }, 200, null, Laya.Handler.create(this, this.tween_3, [game]), 400);
+        }
+        tween_3(game) {
+            Laya.Tween.to(game.tt_btnPush, { rotation: 0 }, 200, null, Laya.Handler.create(this, this.tween_push, [game]));
         }
     }
 
@@ -2321,12 +2374,16 @@
             g_evnetM.AddEvent("Advertisement", this, this.advBack);
             this.btn_share.on(Laya.Event.CLICK, this, this.videoShare);
             this.again.on(Laya.Event.CLICK, this, this.againType);
+            this.tt_btnPush.on(Laya.Event.CLICK, this, this.btnPush);
             if (PlatformManager.platform != PlatformType.TTMinGame) {
                 this.btn_camera.visible = false;
             }
             else {
                 this.btn_camera.visible = true;
                 this.btn_camera.addComponent(VideoCom);
+                if (PlatformManager.Jsb.isIos())
+                    return;
+                PlatformManager.Jsb.ttPushShake(this);
             }
         }
         openSet(e) {
@@ -2466,6 +2523,12 @@
             this.openBox(3, false);
             g_sceneM.destroyPart();
             g_sceneM.continueGame();
+            if (PlatformManager.platform == PlatformType.TTMinGame && this.box_lose.visible == false) {
+                this.bg_push.visible = false;
+                if (PlatformManager.Jsb.isIos())
+                    return;
+                PlatformManager.Jsb.btnDestroys();
+            }
         }
         updateGold() {
             this.label_dmd.text = "" + g_constD.gold;
@@ -2518,6 +2581,9 @@
             else {
                 this.reloadGame();
             }
+        }
+        btnPush() {
+            PlatformManager.Jsb.TTnavigateToMiniGame();
         }
     }
     var AdvType;
@@ -3905,7 +3971,7 @@
             Laya.MouseManager.multiTouchEnabled = false;
             g_evnetM.init();
             g_sceneM.initEvent();
-            PlatformManager.init(PlatformType.OppoMinGame);
+            PlatformManager.init(PlatformType.TTMinGame);
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {
