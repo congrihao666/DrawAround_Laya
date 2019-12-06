@@ -88,12 +88,16 @@ export default class GameUI extends ui.MainSceneUI {
 
         this.btn_share.on(Laya.Event.CLICK, this, this.videoShare);
         this.again.on(Laya.Event.CLICK, this, this.againType);
+        this.TTBtnPush.on(Laya.Event.CLICK, this, this.btnPush);
 
         if (PlatformManager.platform != PlatformType.TTMinGame) {
             this.btn_camera.visible = false;
         } else {
             this.btn_camera.visible = true;
             this.btn_camera.addComponent(VideoCom);
+            if (PlatformManager.Jsb.isIos()) return;
+            this.TTBtnPush.visible = true;
+            PlatformManager.Jsb.ttPushShake(this);
         }
     }
 
@@ -299,6 +303,11 @@ export default class GameUI extends ui.MainSceneUI {
         }else{
             this.reloadGame();
         }
+    }
+
+    /** 头条互推轮播点击*/
+    btnPush(){
+        PlatformManager.Jsb.TTnavigateToMiniGame();
     }
 }
 

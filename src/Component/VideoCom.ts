@@ -101,7 +101,6 @@ export class VideoCom extends Laya.Script {
                 })
                 this.isOp = false;
             }
-            this.isRecord = !this.isRecord;
         } else {
             if (this.playType) {
                 this.playType = false
@@ -132,6 +131,7 @@ export class VideoCom extends Laya.Script {
 
             }
         }
+        this.isRecord = !this.isRecord;
     }
 
     onUpdate() {

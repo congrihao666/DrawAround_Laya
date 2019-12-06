@@ -2,12 +2,12 @@
     "x":0,
     "type":"Scene",
     "selectedBox":1,
-    "selecteID":189,
+    "selecteID":199,
     "searchKey":"Scene",
     "referenceLines":null,
     "props":{"width":750,"sceneColor":"#000000","positionVariance_0":100,"maxPartices":100,"height":1630},
     "nodeParent":-1,
-    "maxID":199,
+    "maxID":202,
     "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
@@ -149,7 +149,7 @@
                         }]
                 }],
             "$LOCKED":true,
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -277,14 +277,13 @@
             "props":{"y":0,"x":0,"width":750,"var":"box_lose","height":1630},
             "nodeParent":1,
             "label":"box_lose",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":129,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":284,"x":110.5,"skin":"img/sb-sb.png"},
@@ -298,7 +297,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":420,"x":210,"skin":"img/sb-djs.png"},
@@ -312,7 +310,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,btn_jixuyouxi",
                     "props":{"y":820,"x":220.5,"var":"btn_jixuyouxi","skin":"img/sb-jx.png"},
@@ -326,7 +323,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,btn_fanhui",
                     "props":{"y":980,"x":220,"var":"btn_fanhui","skin":"img/zj-anniu1.png"},
@@ -353,7 +349,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"FontClip",
                     "searchKey":"FontClip,font_failCnt",
                     "props":{"y":590,"x":375,"var":"font_failCnt","value":"10","skin":"img/1234567890.png","sheet":"1234567890","scaleY":3.2,"scaleX":3.2,"anchorY":0.5,"anchorX":0.5},
@@ -366,7 +361,7 @@
                     "child":[
                         ]
                 }],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -527,14 +522,13 @@
             "props":{"y":130,"x":104,"width":542,"visible":false,"var":"shareBox"},
             "nodeParent":1,
             "label":"shareBox",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":189,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":297,"width":542,"skin":"push/img_bg_1.png","sizeGrid":"20,20,20,20","height":686},
@@ -547,7 +541,6 @@
                     "compId":190,
                     "child":[
                         {
-                            "x":45,
                             "type":"Label",
                             "searchKey":"Label,again",
                             "props":{"y":603,"x":211,"var":"again","underline":true,"text":"再来一次","fontSize":30,"color":"#fff","bold":true},
@@ -561,7 +554,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,btn_share",
                             "props":{"y":463,"x":147,"var":"btn_share","skin":"push/img_share.png"},
@@ -576,7 +568,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Label",
                             "searchKey":"Label",
                             "props":{"y":223,"x":40,"text":"将本次精彩操作分享给朋友吧!","fontSize":34,"color":"#fff","bold":true},
@@ -590,7 +581,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Label",
                             "searchKey":"Label",
                             "props":{"y":33,"x":169,"text":"提示","fontSize":100,"color":"#ffd40b","bold":true},
@@ -604,7 +594,50 @@
                                 ]
                         }]
                 }],
-            "$HIDDEN":false
+            "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image,TTBtnPush",
+            "props":{"y":618,"x":682,"visible":false,"var":"TTBtnPush","skin":"push/bg_push.png","right":20,"pivotY":68,"pivotX":48},
+            "nodeParent":1,
+            "label":"TTBtnPush",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":199,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,TTBtnIcon",
+                    "props":{"y":11,"x":7,"var":"TTBtnIcon","skin":"push/fklfsicon.png"},
+                    "nodeParent":199,
+                    "label":"TTBtnIcon",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":200,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":-12,"skin":"push/mark.png"},
+                    "nodeParent":199,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":201,
+                    "child":[
+                        ]
+                }],
+            "$HIDDEN":true
         }],
     "animations":[
         {

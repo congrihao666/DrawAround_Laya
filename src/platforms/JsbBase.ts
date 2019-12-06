@@ -156,6 +156,16 @@ export class JsbBase {
     public showBannder(){
         
     }
+
+    /** 头条互推轮播*/
+    public ttPushShake(view) {
+
+    }
+
+    /** 跳转小游戏*/
+    public TTnavigateToMiniGame() {
+
+    }
 }
 
 
